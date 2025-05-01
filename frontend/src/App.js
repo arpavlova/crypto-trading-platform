@@ -27,10 +27,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import Market from "./components/Market";
-import Profile from "./components/Profile";
-import Navbar from "./components/Navbar";
+import Home from "./screens/Home";
+import Market from "./screens/Market";
+import Profile from "./screens/Profile";
+import Navbar from "./screens/Navbar";
 
 function App() {
   return (

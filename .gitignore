@@ -1,0 +1,10 @@
+# Java
+/target
+*.class
+
+# Node/React
+node_modules
+build
+
+# OS files
+.DS_Store

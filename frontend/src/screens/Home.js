@@ -152,7 +152,7 @@ const Home = () => {
         )}
       </div>
 
-      <div>
+      { /*<div>
         <h3>Transaction History:</h3>
         {transactions.length === 0 ? (
           <p>No transactions yet.</p>
@@ -167,9 +167,9 @@ const Home = () => {
             </div>
           ))
         )}
-      </div>
+      </div> */}
 
-      <div>
+      <div className="input-container">
         <h3>Buy/Sell Crypto</h3>
         <input
           type="text"

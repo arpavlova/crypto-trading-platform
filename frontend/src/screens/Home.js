@@ -191,7 +191,7 @@ const Home = () => {
           <button onClick={handleWithdraw}>Withdraw</button>
         </div>
 
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        {errorMessage && <p className="text error">{errorMessage}</p>}
       </div>
     </div>
   );

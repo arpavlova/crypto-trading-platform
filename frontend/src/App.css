@@ -44,7 +44,7 @@ input[type="number"] {
   font-size: 1rem;
   box-shadow: 0 0 10px #00d0df;
 }
-/*#005cff*/
+
 button{
   width: 100px;
   padding: 12px 24px;
@@ -57,7 +57,6 @@ button{
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 0 10px #00d0df;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .button-group{
@@ -72,7 +71,7 @@ button{
 .text{
   text-align: center;
   margin-top: 1px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 button:hover {
@@ -81,9 +80,9 @@ button:hover {
 }
 
 .error {
-  color: #ff5c5c;
+  color: #a00202;
   font-weight: bold;
-  margin-top: 1rem;
+  margin-top: 40px;
 }
 
 .transaction,

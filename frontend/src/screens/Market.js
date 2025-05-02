@@ -1,64 +1,61 @@
+// src/screens/Market.js
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+//import "./Market.css";
 
-const Market = () => {
-  const [search, setSearch] = useState("");
-  const [crypto, setCrypto] = useState([]);
+const PAIRS = [
+  "XBT/USD", "ETH/USD", "ADA/USD", "XRP/USD", "SOL/USD",
+  "DOT/USD", "LTC/USD", "BCH/USD", "DOGE/USD", "AVAX/USD",
+  "LINK/USD", "MATIC/USD", "ATOM/USD", "ETC/USD", "XLM/USD",
+  "EOS/USD", "TRX/USD", "UNI/USD", "NEAR/USD", "FIL/USD",
+];
+
+export default function Market() {
+  const [prices, setPrices] = useState({});
 
   useEffect(() => {
-    Axios.get(
-      "https://api.coinstats.app/public/v1/coins?skip=0&limit=100&currency=INR"
-    ).then((res) => {
-      setCrypto(res.data.coins);
-    });
+    const ws = new WebSocket("wss://ws.kraken.com/");
+    
+    ws.onopen = () => {
+      ws.send(
+        JSON.stringify({
+          event: "subscribe",
+          pair: PAIRS,
+          subscription: { name: "ticker" },
+        })
+      );
+    };
+
+    ws.onmessage = (msg) => {
+      const data = JSON.parse(msg.data);
+      if (Array.isArray(data) && data[1]?.c) {
+        const pairName = data[3];
+        const price = data[1].c[0]; // last trade price
+        setPrices((prev) => ({ ...prev, [pairName]: price }));
+      }
+    };
+
+    return () => ws.close();
   }, []);
 
   return (
-    <div>
-      <h1>Top 20 Cryptocurrencies</h1>
-      <input
-        type="text"
-        placeholder="Search by name..."
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <table>
+    <div className="market-screen">
+      <h2>Top 20 Cryptocurrencies</h2>
+      <table className="market-table">
         <thead>
           <tr>
-            <td>Rank</td>
-            <td>Name</td>
-            <td>Symbol</td>
-            <td>Market Cap</td>
-            <td>Price</td>
-            <td>Supply</td>
-            <td>24h Volume</td>
+            <th>Name</th>
+            <th>Price (USD)</th>
           </tr>
         </thead>
         <tbody>
-          {crypto
-            .filter((val) =>
-              val.name.toLowerCase().includes(search.toLowerCase())
-            )
-            .slice(0, 20)
-            .map((val, idx) => (
-              <tr key={idx}>
-                <td>{val.rank}</td>
-                <td>
-                  <a href={val.websiteUrl} target="_blank" rel="noreferrer">
-                    <img src={val.icon} alt={val.name} width="25" />
-                  </a>{" "}
-                  {val.name}
-                </td>
-                <td>{val.symbol}</td>
-                <td>₹{val.marketCap.toLocaleString()}</td>
-                <td>₹{val.price.toFixed(2)}</td>
-                <td>{val.availableSupply.toLocaleString()}</td>
-                <td>{val.volume.toLocaleString()}</td>
-              </tr>
-            ))}
+          {PAIRS.map((pair) => (
+            <tr key={pair}>
+              <td>{pair}</td>
+              <td>${prices[pair] ? parseFloat(prices[pair]).toFixed(2) : "Loading..."}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
-};
-
-export default Market;
+}

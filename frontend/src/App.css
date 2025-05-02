@@ -19,3 +19,27 @@
   display: flex;
   justify-content: center;  
 }
+
+/* src/screens/Market.css */
+.market-screen {
+  padding: 40px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.market-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.market-table th,
+.market-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.market-table th {
+  background-color: #333;
+  color: white;
+}

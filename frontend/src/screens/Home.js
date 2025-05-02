@@ -133,18 +133,18 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h1>Virtual Crypto World</h1>
+      <h1 className="text">Crypto Virtual World</h1>
 
-      <h2>Account Balance: ${balance.toFixed(2)}</h2>
+      <h2 className="text">Account Balance: ${balance.toFixed(2)}</h2>
 
       <div>
         <h3>Your Holdings:</h3>
         {holdings.length === 0 ? (
-          <p>No holdings yet.</p>
+          <p className="text">No holdings yet.</p>
         ) : (
           holdings.map((holding, index) => (
             <div key={index}>
-              <p>
+              <p className="text">
                 {holding.name} ({holding.symbol}): {holding.amount} units
               </p>
             </div>
@@ -170,7 +170,7 @@ const Home = () => {
       </div> */}
 
       <div className="input-container">
-        <h3>Buy/Sell Crypto</h3>
+        <h3 className="text">Buy/Sell Crypto</h3>
         <input
           type="text"
           placeholder="Enter cryptocurrency symbol (e.g., BTC)"
@@ -184,7 +184,7 @@ const Home = () => {
           value={amount}
         />
 
-        <div>
+        <div className="button-group">
           <button onClick={handleBuy}>Buy</button>
           <button onClick={handleSell}>Sell</button>
           <button onClick={handleDeposit}>Deposit</button>

@@ -1,30 +1,16 @@
 import React, { useContext } from "react";
-import { AccountContext } from "../context/Account";
+import { AccountContext } from "../context/Account.js";
 
 const Profile = () => {
-  const { balance, holdings, transactions, resetAccount } = useContext(AccountContext);
+  const { balance, holdings, resetAccount, transactionsHistory } = useContext(AccountContext);
 
   return (
-    <div>
-      <h2>Account Balance: ${balance.toFixed(2)}</h2>
-      <div>
-        <h3>Transaction History:</h3>
-        {transactions.length === 0 ? (
-          <p>No transactions yet.</p>
-        ) : (
-          transactions.map((transaction, index) => (
-            <div key={index}>
-              <p>
-                {transaction.timestamp} | {transaction.type} |{" "}
-                {transaction.symbol} | {transaction.amount} units | $
-                {(transaction.price * transaction.amount).toFixed(2)}
-              </p>
-            </div>
-          ))
-        )}
+    <div className="profile-container">
+      <h2 className="text">Account Balance: ${balance.toFixed(2)}</h2>
+      <div className="button-group">
+        <button onClick={transactionsHistory}>History</button>
+        <button onClick={resetAccount}>Reset</button>
       </div>
-      <button onClick={resetAccount}>Reset Account</button>
-      {/* render holdings and transactions */}
     </div>
   );
 };

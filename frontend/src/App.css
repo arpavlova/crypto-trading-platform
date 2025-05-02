@@ -15,7 +15,7 @@ body {
   margin: 5rem auto;
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 0 30px #00f0ff;
+  box-shadow: 0 0 30px #00d0df;
 }
 
 h1, h2, h3 {
@@ -26,6 +26,7 @@ h1, h2, h3 {
 
 
 .input-container{
+  padding-top: 5px;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -43,12 +44,13 @@ input[type="number"] {
   font-size: 1rem;
   box-shadow: 0 0 10px #00d0df;
 }
-
-button {
+/*#005cff*/
+button{
+  width: 100px;
   padding: 12px 24px;
-  margin: 15px 10px 0 0;
-  margin-left: 4.4rem;
-  background: linear-gradient(145deg, #00d0df, #005cff);
+  margin-left: 0.5cm;
+  margin-right: 0.5cm;
+  background: linear-gradient(145deg, #00d0df, #007683);
   color: white;
   border: none;
   border-radius: 12px;
@@ -56,6 +58,21 @@ button {
   cursor: pointer;
   box-shadow: 0 0 10px #00d0df;
   transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-group{
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.profile-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+.text{
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 40px;
 }
 
 button:hover {
@@ -115,3 +132,4 @@ button:hover {
   background-color: #333;
   color: white;
 }
+

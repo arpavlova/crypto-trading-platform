@@ -1,6 +1,4 @@
-// src/screens/Market.js
 import React, { useEffect, useState } from "react";
-//import "./Market.css";
 
 const PAIRS = [
   "XBT/USD", "ETH/USD", "ADA/USD", "XRP/USD", "SOL/USD",
@@ -34,6 +32,7 @@ export default function Market() {
       }
     };
 
+    
     return () => ws.close();
   }, []);
 

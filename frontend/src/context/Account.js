@@ -10,11 +10,7 @@ export const AccountProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]); // [{type, symbol, amount, price, timestamp}]
   const [message, setMessage] = useState("");
 
-  const resetAccount = () => {
-    setBalance(INITIAL_BALANCE);
-    setHoldings([]);
-    setTransactions([]);
-  };
+  
 
   const transactionsHistory = () => {  
     if (transactions.length === 0) {
@@ -32,6 +28,15 @@ export const AccountProvider = ({ children }) => {
         </div>
       ))
     }
+
+    setMessage("");
+  };
+
+  const resetAccount = () => {
+    setBalance(INITIAL_BALANCE);
+    setHoldings([]);
+    setTransactions([]);
+    setMessage("");
   };
 
 
@@ -46,6 +51,7 @@ export const AccountProvider = ({ children }) => {
         setTransactions,
         resetAccount,
         transactionsHistory,
+        message
       }}
     >
       {children}

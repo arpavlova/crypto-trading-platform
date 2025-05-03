@@ -12,25 +12,29 @@ const Home = () => {
   } = useContext(AccountContext);
 
   const [amount, setAmount] = useState("");
-  const [crypto, setCrypto] = useState(""); // symbol of crypto for buy/sell
+  const [crypto, setCrypto] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Handle Buy Operation
   const handleBuy = () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to buy.");
       return;
     }
-    const totalPrice = amount * 100; // Assume a static price for now
+
+
+
+    //============================================================================================
+    //call backend to update the current balance - 
+      //check if crypto symbol is valid
+      //get real price for single amount of the valid crypto 
+        //check current amount - update ( holdings + balance + transaction history) or error
+
+    const totalPrice = amount * 100;
     if (totalPrice > balance) {
       setErrorMessage("Insufficient funds for the purchase.");
       return;
-    }
-    
-    // Update balance
+    }    
     setBalance(balance - totalPrice);
-
-    // Update holdings
     const existingHolding = holdings.find((h) => h.symbol === crypto);
     if (existingHolding) {
       existingHolding.amount += amount;
@@ -40,63 +44,73 @@ const Home = () => {
         { symbol: crypto, name: crypto.toUpperCase(), amount: parseFloat(amount) },
       ]);
     }
-
-    // Record transaction
     const newTransaction = {
       type: "Buy",
       symbol: crypto,
       amount: amount,
-      price: 100, // Assume price of 100 for now
+      price: 100, // real value
       timestamp: new Date().toLocaleString(),
     };
     setTransactions([newTransaction, ...transactions]);
+    //============================================================================================
 
+
+    
     setErrorMessage(""); // Reset error message
     setAmount(""); // Reset amount
+    setCrypto(""); // Reset crypto
   };
 
-  // Handle Sell Operation
   const handleSell = () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to sell.");
       return;
     }
+    
+
+    //============================================================================================   
+    //call backend to update the current balance - 
+      //check if crypto symbol is valid
+      //get real price for single amount of the valid crypto 
+        //check current amount - update ( holdings + balance + transaction history) or error
     const holding = holdings.find((h) => h.symbol === crypto);
     if (!holding || holding.amount < amount) {
       setErrorMessage("You don't have enough crypto to sell.");
       return;
     }
-
-    // Update balance
-    const totalPrice = amount * 100; // Assume a static price for now
+    const totalPrice = amount * 100; // real price
     setBalance(balance + totalPrice);
-
-    // Update holdings
     holding.amount -= amount;
     if (holding.amount === 0) {
       setHoldings(holdings.filter((h) => h.symbol !== crypto));
     }
-
-    // Record transaction
     const newTransaction = {
       type: "Sell",
       symbol: crypto,
       amount: amount,
-      price: 100, // Assume price of 100 for now
+      price: 100, // real price
       timestamp: new Date().toLocaleString(),
     };
     setTransactions([newTransaction, ...transactions]);
+    //============================================================================================
+
+
 
     setErrorMessage(""); // Reset error message
     setAmount(""); // Reset amount
+    setCrypto(""); // Reset crypto
   };
 
-  // Handle Deposit
   const handleDeposit = () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to deposit.");
       return;
     }
+
+    //============================================================================================
+
+    //call backend to update the current balance - 
+        //check current amount - update ( holdings + balance + transaction history) or error
     setBalance(balance + parseFloat(amount));
     const newTransaction = {
       type: "Deposit",
@@ -104,17 +118,25 @@ const Home = () => {
       timestamp: new Date().toLocaleString(),
     };
     setTransactions([newTransaction, ...transactions]);
+    //============================================================================================
+
 
     setErrorMessage(""); // Reset error message
     setAmount(""); // Reset amount
+    setCrypto(""); // Reset crypto
   };
 
-  // Handle Withdrawal
+
   const handleWithdraw = () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to withdraw.");
       return;
     }
+
+
+    //============================================================================================
+    //call backend to update the current balance - 
+        //check current amount - update ( holdings + balance + transaction history) or error
     if (amount > balance) {
       setErrorMessage("Insufficient funds to withdraw.");
       return;
@@ -126,49 +148,31 @@ const Home = () => {
       timestamp: new Date().toLocaleString(),
     };
     setTransactions([newTransaction, ...transactions]);
+    //============================================================================================
+
+
 
     setErrorMessage(""); // Reset error message
     setAmount(""); // Reset amount
+    setCrypto(""); // Reset crypto
   };
 
   return (
     <div className="home">
       <h1 className="text">Crypto Virtual World</h1>
-
       <h2 className="text">Account Balance: ${balance.toFixed(2)}</h2>
-
       <div>
         <h3>Your Holdings:</h3>
         {holdings.length === 0 ? (
           <p className="text">No holdings yet.</p>
         ) : (
           holdings.map((holding, index) => (
-            <div key={index}>
-              <p className="text">
+            <p key={index} className="text">
                 {holding.name} ({holding.symbol}): {holding.amount} units
-              </p>
-            </div>
+            </p>
           ))
         )}
       </div>
-
-      { /*<div>
-        <h3>Transaction History:</h3>
-        {transactions.length === 0 ? (
-          <p>No transactions yet.</p>
-        ) : (
-          transactions.map((transaction, index) => (
-            <div key={index}>
-              <p>
-                {transaction.timestamp} | {transaction.type} |{" "}
-                {transaction.symbol} | {transaction.amount} units | $
-                {(transaction.price * transaction.amount).toFixed(2)}
-              </p>
-            </div>
-          ))
-        )}
-      </div> */}
-
       <div className="input-container">
         <h3 className="text">Buy/Sell Crypto</h3>
         <input

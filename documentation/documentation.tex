@@ -1,0 +1,409 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+% Font settings
+\usepackage{times}
+\usepackage{courier}
+
+% Page settings
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\renewcommand{\baselinestretch}{1.5}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+% Section formatting
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Code listing settings
+\lstset{
+  basicstyle=\ttfamily,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=single,
+  tabsize=2,
+  breaklines=true,
+  breakatwhitespace=false,
+  captionpos=b
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\huge\bfseries Crypto Trading Platform \par}
+    \vspace{1cm}
+    {\Large Tradin 212 Project \par}
+    \vspace{1.5cm}
+    {\large Akaga Pavlova \par}
+    \vfill
+    Ръководител: доц. д-р Петър Русланов Армянов \par
+    \vspace{0.8cm}
+    {\large \today \par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Overview}
+\subsection{Project description}
+Web application that simulates a cryptocurrency trading platform, allowing users to view real-time prices of the top 20 cryptocurrencies,
+maintaining a virtual account balance for buying and selling crypto with a history of all transactions made.
+
+\subsubsection{Requirements}
+The following requirements are implemented:
+\subsubsection{Functionality}
+\begin{itemize}
+    \item Dynamically update the top 20 Crypto prices in real-time as they change on the exchange.
+    \item Clearly present the cryptocurrency name, symbol, and current price in a user-friendly table or list format.
+    \item Initialize a virtual account balance with a starting value.
+    \item Allow users to specify the amount of cryptocurrency they want to purchase.
+    \item Deduct the purchase cost from the account balance.
+    \item Display a confirmation message or update the UI to reflect the updated balance and holdings.
+    \item Allow users to specify the amount of cryptocurrency they want to sell.
+    \item Increase the account balance by the selling amount.
+    \item Update the UI to reflect the updated balance and holdings.
+    \item Ensure that transactions respect account balance limitations.
+    \item Provide clear error messages if invalid input is entered.
+    \item A user should be able to see a history log of all his transactions.
+    \item Include a button or link that resets the account balance to the initial value.
+    \item Upon clicking the reset button, update the UI to show the original balance and clear any cryptocurrency holdings.
+    \item Dynamically update the top 20 Crypto prices in real-time as they change on the exchange.
+    \item Clearly present the cryptocurrency name, symbol, and current price in a user-friendly table or list format.
+    \item Initialize a virtual account balance with a starting value.
+    \item Allow users to specify the amount of cryptocurrency they want to purchase.
+    \item Deduct the purchase cost from the account balance.
+    \item Display a confirmation message or update the UI to reflect the updated balance and holdings.
+    \item Allow users to specify the amount of cryptocurrency they want to sell.
+    \item Increase the account balance by the selling amount.
+    \item Update the UI to reflect the updated balance and holdings.
+    \item Ensure that transactions respect account balance limitations.
+    \item Provide clear error messages if invalid input is entered.
+    \item A user should be able to see a history log of all his transactions.
+    \item Include a button or link that resets the account balance to the initial value.
+    \item Upon clicking the reset button, update the UI to show the original balance and clear any cryptocurrency holdings.уми, сортиране, принтиране и други.
+    \item Dynamically update the top 20 Crypto prices in real-time as they change on the exchange.
+    \item Clearly present the cryptocurrency name, symbol, and current price in a user-friendly table or list format.
+    \item Initialize a virtual account balance with a starting value.
+    \item Allow users to specify the amount of cryptocurrency they want to purchase.
+    \item Deduct the purchase cost from the account balance.
+    \item Display a confirmation message or update the UI to reflect the updated balance and holdings.
+    \item Allow users to specify the amount of cryptocurrency they want to sell.
+    \item Increase the account balance by the selling amount.
+    \item Update the UI to reflect the updated balance and holdings.
+    \item Ensure that transactions respect account balance limitations.
+    \item Provide clear error messages if invalid input is entered.
+    \item A user should be able to see a history log of all his transactions.
+    \item Include a button or link that resets the account balance to the initial value.
+    \item Upon clicking the reset button, update the UI to show the original balance and clear any cryptocurrency holdings. приложението.
+    \item Dynamically update the top 20 Crypto prices in real-time as they change on the exchange.
+    \item Clearly present the cryptocurrency name, symbol, and current price in a user-friendly table or list format.
+    \item Initialize a virtual account balance with a starting value.
+    \item Allow users to specify the amount of cryptocurrency they want to purchase.
+    \item Deduct the purchase cost from the account balance.
+    \item Display a confirmation message or update the UI to reflect the updated balance and holdings.
+    \item Allow users to specify the amount of cryptocurrency they want to sell.
+    \item Increase the account balance by the selling amount.
+    \item Update the UI to reflect the updated balance and holdings.
+    \item Ensure that transactions respect account balance limitations.
+    \item Provide clear error messages if invalid input is entered.
+    \item A user should be able to see a history log of all his transactions.
+    \item Include a button or link that resets the account balance to the initial value.
+    \item Upon clicking the reset button, update the UI to show the original balance and clear any cryptocurrency holdings.
+    \item Dynamically update the top 20 Crypto prices in real-time as they change on the exchange.
+    \item Clearly present the cryptocurrency name, symbol, and current price in a user-friendly table or list format.
+    \item Initialize a virtual account balance with a starting value.
+    \item Allow users to specify the amount of cryptocurrency they want to purchase.
+    \item Deduct the purchase cost from the account balance.
+    \item Display a confirmation message or update the UI to reflect the updated balance and holdings.
+    \item Allow users to specify the amount of cryptocurrency they want to sell.
+    \item Increase the account balance by the selling amount.
+    \item Update the UI to reflect the updated balance and holdings.
+    \item Ensure that transactions respect account balance limitations.
+    \item Provide clear error messages if invalid input is entered.
+    \item A user should be able to see a history log of all his transactions.
+    \item Include a button or link that resets the account balance to the initial value.
+    \item Upon clicking the reset button, update the UI to show the original balance and clear any cryptocurrency holdings.
+    \item Dynamically update the top 20 Crypto prices in real-time as they change on the exchange.
+    \item Clearly present the cryptocurrency name, symbol, and current price in a user-friendly table or list format.
+    \item Initialize a virtual account balance with a starting value.
+    \item Allow users to specify the amount of cryptocurrency they want to purchase.
+    \item Deduct the purchase cost from the account balance.
+    \item Display a confirmation message or update the UI to reflect the updated balance and holdings.
+    \item Allow users to specify the amount of cryptocurrency they want to sell.
+    \item Increase the account balance by the selling amount.
+    \item Update the UI to reflect the updated balance and holdings.
+    \item Ensure that transactions respect account balance limitations.
+    \item Provide clear error messages if invalid input is entered.
+    \item A user should be able to see a history log of all his transactions.
+    \item Include a button or link that resets the account balance to the initial value.
+    \item Upon clicking the reset button, update the UI to show the original balance and clear any cryptocurrency holdings.
+\end{itemize}
+
+\subsection{Структура на документацията}
+Тази документация обхваща архитектурата на проекта, реализацията на основните класове и тяхната функционалност - представени са и примерни тестове, които обхващат различни сценарии за тяхното проложение.
+Изложени са идеи за бъдещи подобрения.
+
+\section{Преглед на предметната област}
+\subsection{Основни дефиниции, концепции и алгоритми}
+\subsubsection{Основни дефиниции и концепции}
+Проектът използва редица ключови дефиниции, които са съществени за разбирането и имплементацията на решението:
+\begin{itemize}
+    \item \textbf{Файл} - базовата единица за съхранение на данните на всеки файл: име, съдържание и данни за всяка незаписана операция над този файл.
+    \item \textbf{Текст} - базовата единица за съхранение на текстови данни.
+    \item \textbf{Команда} - операция, съдържаща информация за функционалността и нейните операнди.
+    \item \textbf{Филтър} - конкретна функционалност, която променя обработва в съответствие с определени критерии.
+    \item \textbf{Дисплей} - грижи се за извеждането на информацията от конкретен файл на стандартния изход в подходящ вид.
+\end{itemize}
+
+\subsubsection{Алгоритми}
+За реализацията на различните операции и филтри се използват следните алгоритми:
+\begin{itemize}
+    \item \textbf{Замяна на думи} - алгоритъм за намиране и замяна на думи в текста(квадратична сложност).
+    \item \textbf{Сортиране} - алгоритъм за сортиране на редовете в текста(полилогаритмична сложност).
+    \item \textbf{Изтриване на дубликати} - алгоритъм за намиране и изтриване на повторения в текста(квадратична сложност).
+    \item \textbf{Центриране на текста} - алгоритъм за подравняване на редовете при извеждане(линейна сложност).
+\end{itemize}
+
+\subsection{Дефиниране на проблеми и сложност на поставената задача}
+\subsubsection{Проблеми}
+Основните проблеми, които трябва да бъдат решени при разработката на избраната имплементация:
+\begin{itemize}
+    \item \textbf{Управление на файловете} - ефективно съхранение и манипулация на данни във файловата система.
+    \item \textbf{Ефективност на операциите} - бързодействие на операциите върху текста при големи обеми данни.
+    \item \textbf{Интеграция на филтри и команди} - създаване на модулна система, която позволява лесно добавяне и премахване на операции.
+    \item \textbf{Потребителски интерфейс} - предоставяне на удобен потребителски интерфейс за работа с текста.
+\end{itemize}
+
+\subsection{Подходи, методи за решаване на проблемите}
+\begin{itemize}
+\item \textbf{Обектно-ориентиран модел} - използване на класове и обекти за представяне на различните компоненти на текстовия процесор.
+    \item \textbf{Модулна архитектура} - разделяне на функционалността на модули, което позволява лесно добавяне и промяна на нови операции и филтри.
+    \item \textbf{Оптимизация на алгоритмите} - използване на ефективни алгоритми и структури от данни за подобряване на бързодействието на процесите.
+    \item \textbf{Потребителски интерфейс} - създаване на прост и ясен интерфейс, който да улесни работата на потребителя с проложението.
+\end{itemize}
+    Реализацията на гореспоменатите подходи е ключова за успешното разработване и функциониране на текстовия процесор, за неговата устойчивост и лесна разширяемост в бъдеще.
+
+\section{Проектиране}
+\subsection{Обща архитектура – ООП дизайн}
+Имплементацията се свежда до дизайн и дефиниция на градивните части на програмата - файлове, текстове и команди, както и връзките между тях.
+
+
+\subsection{Йерархии на класовете}
+
+\subsubsection{Йерархия на класовете за филтриране}
+\begin{figure}[h]
+   %\includegraphics[width=0.6\textwidth]{filters_diagram.png}
+    \label{fig:system-diagram}
+\end{figure}
+
+
+\section{Реализация, тестване}
+\subsection{Реализация на класове}
+\subsubsection{Клас File}
+Класът File представлява абстракцията текстов файл и осигурява методи за управление на съдържанието му.
+
+\begin{lstlisting}[language=C++]
+class File
+{
+public:
+    File(std::ifstream& istr, const char* name);
+    void removeLastOperation();
+    void addOperation(const Command& operation);
+    void removeOperations();
+    bool hasUnsavedChanges() const;
+    void saveChanges(const MyString& path);
+    void print(const Display* sink) const;
+    const MyString& getName() const;
+    const Text& getContent() const;
+private:
+    bool unsavedChanges = false;
+    MyString name;
+    Text content;
+    MyVector<Command> operations;
+};
+\end{lstlisting}
+
+\subsubsection{Клас Command}
+Класът Command представлява команда за изпълнение на операция върху файл, като съдържа код за типа на операцията, операнди и филтър за приложение на операцията.
+
+\begin{lstlisting}[language=C++]
+class Command
+{
+public:
+    Command();
+    Command(const Command& other);
+    Command& operator=(const Command& other);
+    ~Command();
+
+    void setCode(CommandMap c);
+    void setOperandsCount(int cnt);
+    void setOperands(const MyString& userInput, bool whole = false);
+    void setOperation(const BaseFilter* op);
+    void setSink(const Display* sink);
+
+    const Display* getSink() const;
+    const BaseFilter* getFilter() const;
+    const MyVector<MyString>& getOperands() const;
+    CommandMap getCode() const;
+    void free();
+
+private:
+    void copyFromOther(const Command& other);
+
+    short operandsCount = 0;
+    CommandMap code = CommandMap::Invalid;
+    const BaseFilter* operation = nullptr;
+    const Display* sink = nullptr;
+    MyVector<MyString> operands;
+};
+\end{lstlisting}
+
+
+\subsubsection{Клас CommandManager}
+Класът CommandManager е синглетон, който управлява командите, идващи от потрбителя и осигурява методи за тяхната обработка и изпълнение.
+
+\begin{lstlisting}[language=C++]
+    class CommandManager
+    {
+    public:
+        void introduction() const;
+        void showCommandMap() const;
+        void handleInput();
+        void execute();
+    
+        bool isRunning() const;
+    
+        static CommandManager& getInstance()
+        {
+            static CommandManager instance("Commands.txt");
+            return instance;
+        }
+    
+    private:
+        CommandManager(const char* name);
+        CommandManager(const CommandManager& other) = delete;
+        CommandManager& operator=(const CommandManager& other) = delete;
+        bool running = true;
+        Command operation;
+        MyString commandsFileName;
+    
+    public:
+        //this method is public only for test purposes
+        void setCommand(const MyString& userInput);
+    };
+    
+    typedef CommandManager TheCommandManager;
+\end{lstlisting}
+
+\subsubsection{Клас FileManager}
+Класът FileManager е синглетон, който управлява файловете - тяхното зареждане, записване, затваряне и съхранение на информация.
+
+\begin{lstlisting}[language=C++]
+    class FileManager
+    {
+    public:
+        File& operator[](int index);
+        const File& operator[](int index) const;
+        File& getCurrentFile();
+    
+        void addFile(const MyString& fileName);
+        void removeFile(const MyString& fileName);
+        void clearFiles();
+        void changeCurrentFile(const MyString& fileName);
+        void getInfo() const;
+        int contains(const MyString& fileName) const;
+        size_t getFilesCount() const;
+    
+        static FileManager& getInstance()
+        {
+            static FileManager instance;
+            return instance;
+        }
+        ~FileManager();
+    
+    private:
+        FileManager() = default;
+    
+        FileManager(const FileManager& other) = delete;
+        FileManager& operator=(const FileManager& other) = delete;
+    
+        int currentFile = 0;
+        MyVector<File*> files;
+        Display* sink = nullptr;
+    };
+    typedef FileManager TheFileManager;
+\end{lstlisting}
+
+
+\subsection{Планиране, описание и създаване на тестови сценарии}
+Реализирани са различни тестове посредством Catch2 framework, обхващащи логиката и поведението на програмата, последните се намират във файла "TESTS.CPP". Подробно са тествани градивните класове - MyString, MyVector, Text, 
+както и различните помощни фукции, декларирани във файла "helpers.hpp". Към проекта са включени готовите тестови файлове, необходими за подкарване на тестовете.
+\subsubsection{Примерни тестове и техния резултат}
+\begin{lstlisting}[language=C++]
+    TEST_CASE("Testing Sort on lines with fixed positions")
+{
+	Text source;
+	MyString openSourceFile = "open TextFiles\\SortTests\\staticLines.txt";
+	TheCommandManager::getInstance().setCommand(openSourceFile);
+	TheCommandManager::getInstance().execute();
+	source = FileManager::getInstance().getCurrentFile().getConten();
+	MyString sortSourceFile = "sort";
+	TheCommandManager::getInstance().setCommand(sortSourceFile);
+	TheCommandManager::getInstance().execute();
+	MyString saveByOtherName = "saveas TextFiles\\SortTests\\staticLinesProgramOutput.txt";
+	TheCommandManager::getInstance().setCommand(saveByOtherName);
+	TheCommandManager::getInstance().execute();
+	MyString openOutputFile = "open TextFiles\\SortTests\\staticLinesProgramOutput.txt";
+	TheCommandManager::getInstance().setCommand(openOutputFile);
+	TheCommandManager::getInstance().execute();
+
+	SECTION("Comparing content")
+	{
+		CHECK(FileManager::getInstance().getCurrentFile().getConten().getLinesCount() == source.getLinesCount());
+		for(size_t i = 0; i < source.getLinesCount(); ++i)
+			CHECK(FileManager::getInstance().getCurrentFile().getConten().getLine(i + 1) == source.getLine(i + 1));
+	}
+
+	MyString exit = "exit";
+	TheCommandManager::getInstance().setCommand(exit);
+	TheCommandManager::getInstance().execute();
+}
+\end{lstlisting}
+
+
+\begin{figure}[h]
+    %\includegraphics[width=1.012\textwidth]{test.png}
+     \label{fig:system-diagram}
+ \end{figure}
+ 
+
+\section{Заключение}
+\subsection{Обобщение на изпълнението на началните цели}
+Основната фукционалност на проекта е реализирна, направени са необходимите тестове за голяма част от логиката на програмата
+Постигната е абстракция и модуларност на решението, което улеснява интегрирането на бъдещи разширения.
+
+\subsection{Насоки за бъдещо развитие и усъвършенстване}
+По-високото ниво на абстракция на класа Command би довело до по-лесна обработка на по-широка фунцкионалност.
+С оглед на по-добър потребителски опит, извеждането на екрана и форматирането може да се подобри.
+За сигурност за запазване на данните при евентуална грешка при изпълнение на програмата може да се използва резервен буферен файл.
+
+\section{Изтоници}
+"THE LINUX COMMAND LINE A Complete Introduction by William E. Shotts, Jr."
+\end{document}

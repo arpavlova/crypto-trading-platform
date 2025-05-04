@@ -1,0 +1,48 @@
+USE CRYPTOWORLD;
+CREATE TABLE IF NOT EXISTS Users (
+  Id INT NOT NULL AUTO_INCREMENT,
+  Username VARCHAR(100),
+  DateOfRegistration DATETIME DEFAULT CURRENT_TIMESTAMP,
+  Balance DECIMAL(18, 2) DEFAULT 10000.00,
+  PRIMARY KEY (Id)
+);
+
+CREATE TABLE IF NOT EXISTS CryptoCoins (
+    Symbol VARCHAR(10) NOT NULL,
+    Price DECIMAL(18, 2) DEFAULT 0.00,
+    PRIMARY KEY (Symbol)
+);
+
+CREATE TABLE IF NOT EXISTS Transactions (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(100),
+    Type VARCHAR(10),
+    DateOfTransaction DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UserId INT,
+    CryptoSymbol VARCHAR(10),
+    CryptoPrice DECIMAL(18, 2),
+    Amount DECIMAL(18, 2),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (UserId) REFERENCES Users(Id),
+    FOREIGN KEY (CryptoSymbol) REFERENCES CryptoCoins(Symbol)
+);
+
+CREATE TABLE IF NOT EXISTS HasDoneTransactions (
+    UserId INT NOT NULL,
+    TransactionId INT NOT NULL,
+    PRIMARY KEY (UserId, TransactionId),
+    FOREIGN KEY (UserId) REFERENCES Users(Id),
+    FOREIGN KEY (TransactionId) REFERENCES Transactions(Id)
+);
+
+CREATE TABLE IF NOT EXISTS HasCoins (
+    UserId INT NOT NULL,
+    CryptoSymbol VARCHAR(10) NOT NULL,
+    Amount DECIMAL(18, 2) DEFAULT 0.00,
+    PRIMARY KEY (UserId, CryptoSymbol),
+    FOREIGN KEY (UserId) REFERENCES Users(Id),
+    FOREIGN KEY (CryptoSymbol) REFERENCES CryptoCoins(Symbol)
+);
+
+-- This line was commented in your original code; it's NOT included unless needed:
+-- ALTER TABLE Authors ADD CONSTRAINT CK_JB_SAL CHECK (YearOfFirstPublishedBook <= YearOfLastPublishedBook);

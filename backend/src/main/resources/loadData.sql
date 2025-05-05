@@ -7,21 +7,16 @@ VALUES
   ('charlie', 300.00),
   ('diana', 7550.75);
 
-
-USE CRYPTOWORLD;
 INSERT INTO Users (Username)
 VALUES
-    ('Andy')
+    ('Andy');
     
-
-USE CRYPTOWORLD;
 INSERT INTO CryptoCoins (Symbol, Price)
 VALUES
   ('BTC', 65000.00),
   ('ETH', 3200.50),
   ('SOL', 150.75),
   ('ADA', 0.45);
-
 
 INSERT INTO Transactions (Name, Type, UserId, CryptoSymbol, CryptoPrice, Amount)
 VALUES
@@ -43,5 +38,5 @@ INSERT INTO HasCoins (UserId, CryptoSymbol, Amount)
 VALUES
   (1, 'BTC', 0.1),
   (2, 'ETH', 2.0),
-  (1, 'SOL', 0.0),  -- Sold all
+  (1, 'SOL', 0.0),
   (3, 'ADA', 1000.0);

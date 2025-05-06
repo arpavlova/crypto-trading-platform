@@ -1,10 +1,21 @@
 import React, { useContext } from "react";
 import { AccountContext } from "../context/Account.js";
-import { reset, history } from "../api/api.js";
+import { reset, history, gains } from "../api/api.js";
 
 const Profile = () => {
 
-  const { balance, setTransactions, transactions, userId, setErrorMessage, setBalance, setMessage, message } = useContext(AccountContext);
+  const { 
+    balance, 
+    setTransactions, 
+    transactions, 
+    userId, 
+    setErrorMessage, 
+    setBalance, 
+    setMessage, 
+    message,
+    gainLoss,
+    setGainLoss
+  } = useContext(AccountContext);
 
   const handleReset = async () => {
       try {
@@ -17,6 +28,7 @@ const Profile = () => {
         setBalance(data.balance);
         setMessage(data.message);
         setTransactions([]);
+        setGainLoss(null);
   
       } catch (error) {
         setErrorMessage("Reset error: " + error.message);
@@ -40,8 +52,20 @@ const Profile = () => {
         }));
         setTransactions(formattedHistory);
         setMessage("");
+        setGainLoss(null);
       } catch (error) {
-        setErrorMessage("Show history: " + error.message);
+        setErrorMessage("Show history error: " + error.message);
+      }
+    };
+
+    const handleTotalGains = async () => {
+      try {
+        const data = await gains(userId); // Already returns JSON-parsed double
+        setGainLoss(data);
+        setTransactions([]);
+        setMessage("");
+      } catch (error) {
+        setErrorMessage("Show gains error: " + error.message);
       }
     };
 
@@ -51,8 +75,17 @@ const Profile = () => {
       <div className="button-group">
         <button onClick={handleHistory}>History</button>
         <button onClick={handleReset}>Reset</button>
+        <button onClick={handleTotalGains}>Gains</button>
       </div>
       {message && <p className="text">{message}</p>}
+      {gainLoss !== null && (
+        <p
+        className="text"
+        style={{ color: gainLoss >= 0 ? "lightgreen" : "salmon" }}
+      >
+        Total {gainLoss >= 0 ? "Gain" : "Loss"}: {(gainLoss * 100).toFixed(2)}%
+      </p>
+      )}
       {transactions.length > 0 && (
       <div className="transaction">
       {transactions.map((transaction, index) => (

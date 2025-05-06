@@ -13,6 +13,7 @@ export const AccountProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [gainLoss, setGainLoss] = useState(null);
 
   return (
     <AccountContext.Provider
@@ -27,7 +28,9 @@ export const AccountProvider = ({ children }) => {
         setMessage,
         userId,
         errorMessage,
-        setErrorMessage
+        setErrorMessage,
+        gainLoss, 
+        setGainLoss
       }}
     >
       {children}

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "../context/Account";
+import { buy } from "../api/api.js";
 
 const Home = () => {
   const {
@@ -9,57 +10,45 @@ const Home = () => {
     setHoldings,
     transactions,
     setTransactions,
+    setMessage,
+    message
   } = useContext(AccountContext);
 
   const [amount, setAmount] = useState("");
   const [crypto, setCrypto] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleBuy = () => {
+
+
+//=================================================================================================================================
+  const handleBuy = async () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to buy.");
       return;
     }
+    try {
+      const response = await buy(1, crypto, parseFloat(amount));
+      const mess = await response.text(); 
 
+      console.log("Full response:", response);
+      console.log("Response body:", mess)
 
+      if (!response.ok) {
+        setErrorMessage("Buy failed: " + mess);
+        return;
+      }
 
-    //============================================================================================
-    //call backend to update the current balance - 
-      //check if crypto symbol is valid
-      //get real price for single amount of the valid crypto 
-        //check current amount - update ( holdings + balance + transaction history) or error
+      setMessage(mess);
+      setErrorMessage("");
+      setAmount("");
+      setCrypto("");
 
-    const totalPrice = amount * 100;
-    if (totalPrice > balance) {
-      setErrorMessage("Insufficient funds for the purchase.");
-      return;
-    }    
-    setBalance(balance - totalPrice);
-    const existingHolding = holdings.find((h) => h.symbol === crypto);
-    if (existingHolding) {
-      existingHolding.amount += amount;
-    } else {
-      setHoldings([
-        ...holdings,
-        { symbol: crypto, name: crypto.toUpperCase(), amount: parseFloat(amount) },
-      ]);
+    } catch (error) {
+      setErrorMessage("Buy error: " + error.message);
     }
-    const newTransaction = {
-      type: "Buy",
-      symbol: crypto,
-      amount: amount,
-      price: 100, // real value
-      timestamp: new Date().toLocaleString(),
-    };
-    setTransactions([newTransaction, ...transactions]);
-    //============================================================================================
-
-
-    
-    setErrorMessage(""); // Reset error message
-    setAmount(""); // Reset amount
-    setCrypto(""); // Reset crypto
   };
+//=================================================================================================================================
+
 
   const handleSell = () => {
     if (amount <= 0 || isNaN(amount)) {
@@ -196,6 +185,7 @@ const Home = () => {
         </div>
 
         {errorMessage && <p className="text error">{errorMessage}</p>}
+        {message && <p className="text">{message}</p>}
       </div>
     </div>
   );

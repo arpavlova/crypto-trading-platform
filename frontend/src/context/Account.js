@@ -51,7 +51,8 @@ export const AccountProvider = ({ children }) => {
         setTransactions,
         resetAccount,
         transactionsHistory,
-        message
+        message,
+        setMessage
       }}
     >
       {children}

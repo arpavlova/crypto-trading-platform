@@ -13,7 +13,7 @@ const Profile = () => {
         <button onClick={resetAccount}>Reset</button>
       </div>
 
-      {message && <p className="text">{message}</p>}
+      {/* {message && <p className="text">{message}</p>} */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "../context/Account";
-import { buy, sell } from "../api/api.js";
+import { buy, sell, deposit } from "../api/api.js";
 
 const Home = () => {
   const {
@@ -19,11 +19,7 @@ const Home = () => {
 
   const [amount, setAmount] = useState("");
   const [crypto, setCrypto] = useState("");
-  //const [errorMessage, setErrorMessage] = useState("");
 
-
-
-//=================================================================================================================================
   const handleBuy = async () => {
 
     if (amount <= 0 || isNaN(amount)) {
@@ -48,10 +44,8 @@ const Home = () => {
       setErrorMessage("Buy error: " + error.message);
     }
   };
-//=================================================================================================================================
 
-
-const handleSell = async () => {
+  const handleSell = async () => {
 
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to sell.");
@@ -64,7 +58,6 @@ const handleSell = async () => {
         setErrorMessage("Sell failed: " + data.message);
         return;
       }
-  
       setBalance(data.balance);
       setMessage(data.message);
       setErrorMessage("");
@@ -76,42 +69,36 @@ const handleSell = async () => {
     }
   };
 
-  const handleDeposit = () => {
+  const handleDeposit = async () => {
+
     if (amount <= 0 || isNaN(amount)) {
-      setErrorMessage("Please enter a valid amount to deposit.");
+      setErrorMessage("Please enter a valid amount to sell.");
       return;
     }
+    try {
+      const response = await deposit(userId, parseFloat(amount));
+      const data = await response.json();
+      if (!response.ok) {
+        setErrorMessage("Deposit failed: " + data.message);
+        return;
+      }
+      setBalance(data.balance);
+      setMessage(data.message);
+      setErrorMessage("");
+      setAmount("");
+      setCrypto("");
 
-    //============================================================================================
-
-    //call backend to update the current balance - 
-        //check current amount - update ( holdings + balance + transaction history) or error
-    setBalance(balance + parseFloat(amount));
-    const newTransaction = {
-      type: "Deposit",
-      amount: amount,
-      timestamp: new Date().toLocaleString(),
-    };
-    setTransactions([newTransaction, ...transactions]);
-    //============================================================================================
-
-
-    setErrorMessage(""); // Reset error message
-    setAmount(""); // Reset amount
-    setCrypto(""); // Reset crypto
+    } catch (error) {
+      setErrorMessage("Deposit error: " + error.message);
+    }
   };
 
-
+  //============================================================================================
   const handleWithdraw = () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to withdraw.");
       return;
     }
-
-
-    //============================================================================================
-    //call backend to update the current balance - 
-        //check current amount - update ( holdings + balance + transaction history) or error
     if (amount > balance) {
       setErrorMessage("Insufficient funds to withdraw.");
       return;
@@ -123,20 +110,18 @@ const handleSell = async () => {
       timestamp: new Date().toLocaleString(),
     };
     setTransactions([newTransaction, ...transactions]);
-    //============================================================================================
-
-
-
-    setErrorMessage(""); // Reset error message
-    setAmount(""); // Reset amount
-    setCrypto(""); // Reset crypto
+    setErrorMessage(""); 
+    setAmount("");
+    setCrypto("");
   };
+  //============================================================================================
+
 
   return (
     <div className="home">
       <h1 className="text">Crypto Virtual World</h1>
       <h2 className="text">Account Balance: ${balance.toFixed(2)}</h2>
-      <div>
+      {/* <div>
         <h3>Your Holdings:</h3>
         {holdings.length === 0 ? (
           <p className="text">No holdings yet.</p>
@@ -147,7 +132,7 @@ const handleSell = async () => {
             </p>
           ))
         )}
-      </div>
+      </div> */}
       <div className="input-container">
         <h3 className="text">Buy/Sell Crypto</h3>
         <input

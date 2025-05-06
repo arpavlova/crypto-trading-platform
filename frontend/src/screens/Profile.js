@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { AccountContext } from "../context/Account.js";
-import { reset } from "../api/api.js";
+import { reset, history } from "../api/api.js";
 
 const Profile = () => {
 
-  const { balance, transactionsHistory, userId, setErrorMessage, setBalance, setMessage, message } = useContext(AccountContext);
-
+  const { balance, setTransactions, transactions, userId, setErrorMessage, setBalance, setMessage, message } = useContext(AccountContext);
 
   const handleReset = async () => {
       try {
@@ -17,9 +16,32 @@ const Profile = () => {
         }    
         setBalance(data.balance);
         setMessage(data.message);
+        setTransactions([]);
   
       } catch (error) {
         setErrorMessage("Reset error: " + error.message);
+      }
+    };
+
+    const handleHistory = async () => {
+      try {
+        const data = await history(userId);
+        if (!data || data.length === 0) {
+          setMessage("No transactions yet.");
+          setTransactions([]);
+          return;
+        }
+        const formattedHistory = data.map((transaction) => ({
+          timestamp: transaction.dateOfTransaction,
+          type: transaction.type,
+          symbol: transaction.cryptoSymbol,
+          amount: transaction.amount,
+          price: transaction.cryptoPrice,
+        }));
+        setTransactions(formattedHistory);
+        setMessage("");
+      } catch (error) {
+        setErrorMessage("Show history: " + error.message);
       }
     };
 
@@ -27,10 +49,38 @@ const Profile = () => {
     <div className="profile-container">
       <h2 className="text">Account Balance: ${balance.toFixed(2)}</h2>
       <div className="button-group">
-        <button onClick={transactionsHistory}>History</button>
+        <button onClick={handleHistory}>History</button>
         <button onClick={handleReset}>Reset</button>
       </div>
       {message && <p className="text">{message}</p>}
+      {transactions.length > 0 && (
+      // <div className="transaction">
+      //   {transactions.map((transaction, index) => (
+      //     <div key={index}>
+      //       <p>
+      //         {transaction.timestamp} | {transaction.type} |{" "}
+      //         {transaction.symbol} | {transaction.amount} units | $
+      //         {(transaction.price * transaction.amount).toFixed(2)}
+      //       </p>
+      //     </div>
+      //   ))}
+      // </div>
+      <div className="transaction">
+      {transactions.map((transaction, index) => (
+        <div key={index}>
+          <p>
+            {transaction.timestamp} | {transaction.type}
+            {transaction.symbol && <> | {transaction.symbol}</>}
+            {" "}
+            | {transaction.amount} units
+            {transaction.price && (
+              <> | ${ (transaction.price * transaction.amount).toFixed(2) }</> //if the result is 0 - it should not be displayed
+            )}
+          </p>
+        </div>
+      ))}
+      </div>
+    )}
     </div>
   );
 };

@@ -9,40 +9,10 @@ export const AccountProvider = ({ children }) => {
 
 
   const [balance, setBalance] = useState(INITIAL_BALANCE);
-  const [holdings, setHoldings] = useState([]); // [{symbol, name, amount}]
-  const [transactions, setTransactions] = useState([]); // [{type, symbol, amount, price, timestamp}]
+  const [holdings, setHoldings] = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  
-
-  const transactionsHistory = () => {  
-    if (transactions.length === 0) {
-      setMessage("No transactions yet.");
-      return;
-    }
-    else{
-      transactions.map((transaction, index) => (
-        <div key={index}>
-          <p>
-            {transaction.timestamp} | {transaction.type} |{" "}
-            {transaction.symbol} | {transaction.amount} units | $
-            {(transaction.price * transaction.amount).toFixed(2)}
-          </p>
-        </div>
-      ))
-    }
-
-    setMessage("");
-  };
-
-  // const resetAccount = () => {
-  //   setBalance(INITIAL_BALANCE);
-  //   setHoldings([]);
-  //   setTransactions([]);
-  //   setMessage("");
-  // };
-
 
   return (
     <AccountContext.Provider
@@ -53,7 +23,6 @@ export const AccountProvider = ({ children }) => {
         setHoldings,
         transactions,
         setTransactions,
-        transactionsHistory,
         message,
         setMessage,
         userId,

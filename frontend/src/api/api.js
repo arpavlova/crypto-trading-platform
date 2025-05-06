@@ -1,19 +1,21 @@
 const BASE = process.env.REACT_APP_API_BASE_URL;
 console.log("API Base URL:", BASE);
 
-export const getBalance = (userId) =>
-  fetch(`${BASE}/user/${userId}/balance`)
-    .then((res) => res.json());
+// export const getBalance = (userId) =>
+//   fetch(`${BASE}/user/${userId}/balance`)
+//     .then((res) => res.json());
+
+
+// export const withdraw = (userId, amount) =>
+//   fetch(`${BASE}/user/${userId}/withdraw`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ amount }),
+//   });
+
 
 export const deposit = (userId, amount) =>
-  fetch(`${BASE}/user/${userId}/deposit`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount }),
-  });
-
-export const withdraw = (userId, amount) =>
-  fetch(`${BASE}/user/${userId}/withdraw`, {
+  fetch(`${BASE}/trade/${userId}/deposit`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ amount }),
@@ -34,9 +36,8 @@ export const sell = (userId, cryptoSymbol, amount) =>
     body: JSON.stringify({ cryptoSymbol, amount }),
   });
 
-
-export const getTransactions = (userId) =>
-  fetch(`${BASE}/trade/transactions/${userId}`)
+export const history = (userId) =>
+  fetch(`${BASE}/user/${userId}/transactions`)
     .then((res) => res.json());
 
 export const reset = (userId) =>

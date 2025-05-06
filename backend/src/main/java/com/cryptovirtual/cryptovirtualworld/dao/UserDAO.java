@@ -1,6 +1,7 @@
 package com.cryptovirtual.cryptovirtualworld.dao;
 import java.math.BigDecimal;
-import java.sql.Date;
+// import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserDAO {
         String sql = "SELECT * FROM Users WHERE Id = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
     }
-    public void updateBalanceById(int userId, BigDecimal newBalance) {
+    public void updateBalanceById(int userId, double newBalance) {
         String sql = "UPDATE Users SET Balance = ? WHERE Id = ?";
         jdbcTemplate.update(sql, newBalance, userId);
     }
@@ -43,12 +44,12 @@ public class UserDAO {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Transaction.class), userId);
     }
 
-    public List<Transaction> getTransactionsByUserInTimePeriod(int userId, Date startDate, Date endDate) {
+    public List<Transaction> getTransactionsByUserInTimePeriod(int userId, LocalDate startDate, LocalDate endDate) {
         String sql = "SELECT * FROM GetTransactionsByUserInTimePeriod(?, ?, ?)";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Transaction.class), userId, startDate, endDate);
     }
 
-    public BigDecimal getTotalGainsRatio(int userId, Date startDate, Date endDate) {
+    public BigDecimal getTotalGainsRatio(int userId, LocalDate startDate, LocalDate endDate) {
         String sql = "SELECT GetTotalGainsRatio(?, ?, ?)";
         return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId, startDate, endDate);
     }

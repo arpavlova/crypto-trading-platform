@@ -1,11 +1,11 @@
-USE CRYPTOWORLD;
+USE cryptoworld;
 
-SELECT * FROM Users;
+SELECT * FROM users;
 
 SELECT * FROM Transactions;
 
 SELECT * FROM CryptoCoins;
 
-SELECT * HasDoneTransactions;
+SELECT * FROM HasDoneTransactions;
 
-SELECT * HasCoins;
+SELECT * FROM HasCoins;

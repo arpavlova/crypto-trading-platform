@@ -1,13 +1,14 @@
 package com.cryptovirtual.cryptovirtualworld.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class User {
     private int id;
     private String username;
     private LocalDateTime dateOfRegistration;
-    private BigDecimal balance;
+    private double balance;
+
+    public User() {}
     
     public int getId() {
         return id;
@@ -18,7 +19,7 @@ public class User {
     public LocalDateTime getDateOfRegistration() {
         return dateOfRegistration;
     }
-    public BigDecimal getBalance() {
+    public double getBalance() {
         return balance;
     }
     public void setId(int id) {
@@ -30,10 +31,10 @@ public class User {
     public void setDateOfRegistration(LocalDateTime dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
-    public User(String username, BigDecimal balance) {
+    public User(String username, double balance) {
         this.username = username;
         this.balance = balance;
     }

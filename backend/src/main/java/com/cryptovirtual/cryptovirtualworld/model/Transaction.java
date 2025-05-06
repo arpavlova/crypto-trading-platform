@@ -10,16 +10,17 @@ public class Transaction {
     private LocalDateTime dateOfTransaction;
     private int userId;
     
-    public Transaction(String name, String type, String cryptoSymbol, BigDecimal cryptoPrice, BigDecimal amount) {
-        this.name = name;
-        this.type = type;
-        this.cryptoSymbol = cryptoSymbol;
-        this.cryptoPrice = cryptoPrice;
-        this.amount = amount;
-    }
+    // public Transaction(String name, String type, String cryptoSymbol, BigDecimal cryptoPrice, BigDecimal amount) {
+    //     this.name = name;
+    //     this.type = type;
+    //     this.cryptoSymbol = cryptoSymbol;
+    //     this.cryptoPrice = cryptoPrice;
+    //     this.amount = amount;
+    // }
+
     private String cryptoSymbol;
-    private BigDecimal cryptoPrice;
-    private BigDecimal amount;
+    private double cryptoPrice;
+    private double amount;
     public int getId() {
         return id;
     }
@@ -53,16 +54,16 @@ public class Transaction {
     public void setCryptoSymbol(String cryptoSymbol) {
         this.cryptoSymbol = cryptoSymbol;
     }
-    public BigDecimal getCryptoPrice() {
+    public double getCryptoPrice() {
         return cryptoPrice;
     }
-    public void setCryptoPrice(BigDecimal cryptoPrice) {
+    public void setCryptoPrice(double cryptoPrice) {
         this.cryptoPrice = cryptoPrice;
     }
-    public BigDecimal getAmount() {
+    public double getAmount() {
         return amount;
     }
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 }

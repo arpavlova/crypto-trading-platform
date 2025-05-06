@@ -7,7 +7,8 @@ const PAIRS = [
   "EOS/USD", "TRX/USD", "UNI/USD", "NEAR/USD", "FIL/USD",
 ];
 
-export default function Market() {
+const Market = () => {
+  
   const [prices, setPrices] = useState({});
 
   useEffect(() => {
@@ -58,3 +59,4 @@ export default function Market() {
     </div>
   );
 }
+export default Market;

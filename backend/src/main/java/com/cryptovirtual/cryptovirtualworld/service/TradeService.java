@@ -117,5 +117,20 @@ public class TradeService {
         transactionDAO.save(transaction);
         return "User " + userDAO.getUsernameById(userId) + " deposited " + amount;
     }
+
+    public String withdraw(int userId, double amount) {
+        double currentBalance = userDAO.getBalanceById(userId);
+        if(currentBalance < amount){
+            return "Insufficient balance.";
+        }
+        userDAO.updateBalanceById(userId, currentBalance - amount);
+        Transaction transaction = new Transaction();
+        transaction.setType("Withdraw");
+        transaction.setUserId(userId);
+        transaction.setAmount(amount);
+        transaction.setDateOfTransaction(LocalDateTime.now());
+        transactionDAO.save(transaction);
+        return "User " + userDAO.getUsernameById(userId) + " withdrawed " + amount;
+    }
     
 }

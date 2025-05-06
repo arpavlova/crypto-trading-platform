@@ -71,7 +71,18 @@ public class TradeController {
     @PostMapping("/{userId}/deposit")
     public ResponseEntity<Map<String, Object>> deposit(@PathVariable int userId, @RequestBody TradeRequest req) {
         String result = tradeService.deposit(userId, req.getAmount());
-        double updatedBalance = userDAO.getUserById(userId).getBalance();
+        double updatedBalance = userDAO.getBalanceById(userId);
+        //double updatedBalance = userDAO.getUserById(userId).getBalance();
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", result);
+        response.put("balance", updatedBalance);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{userId}/withdraw")
+    public ResponseEntity<Map<String, Object>> withdraw(@PathVariable int userId, @RequestBody TradeRequest req) {
+        String result = tradeService.withdraw(userId, req.getAmount());
+        double updatedBalance = userDAO.getBalanceById(userId);
         Map<String, Object> response = new HashMap<>();
         response.put("message", result);
         response.put("balance", updatedBalance);

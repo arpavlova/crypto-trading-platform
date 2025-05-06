@@ -51,6 +51,3 @@ CREATE TABLE IF NOT EXISTS HasCoins (
     FOREIGN KEY (UserId) REFERENCES Users(Id),
     FOREIGN KEY (CryptoSymbol) REFERENCES CryptoCoins(Symbol)
 );
-
--- -- This line was commented in your original code; it's NOT included unless needed:
--- -- ALTER TABLE Authors ADD CONSTRAINT CK_JB_SAL CHECK (YearOfFirstPublishedBook <= YearOfLastPublishedBook);

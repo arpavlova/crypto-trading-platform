@@ -2,23 +2,10 @@ package com.cryptovirtual.cryptovirtualworld.model;
 import java.time.LocalDateTime;
 
 public class Transaction {
-    private int id;
-    private String name;
-    private String type;
-    private LocalDateTime dateOfTransaction;
-    private int userId;
-    
-    // public Transaction(String name, String type, String cryptoSymbol, BigDecimal cryptoPrice, BigDecimal amount) {
-    //     this.name = name;
-    //     this.type = type;
-    //     this.cryptoSymbol = cryptoSymbol;
-    //     this.cryptoPrice = cryptoPrice;
-    //     this.amount = amount;
-    // }
 
-    private String cryptoSymbol;
-    private double cryptoPrice;
-    private double amount;
+    // public Transaction(String name, String type, String cryptoSymbol, BigDecimal cryptoPrice, BigDecimal amount) {
+    //     setters
+    // }
     
     public int getId() {
         return id;
@@ -65,4 +52,13 @@ public class Transaction {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    private int id;
+    private String name;
+    private String type;
+    private LocalDateTime dateOfTransaction;
+    private int userId;
+    private String cryptoSymbol;
+    private double cryptoPrice;
+    private double amount;
 }

@@ -1,17 +1,12 @@
 package com.cryptovirtual.cryptovirtualworld.request;
 
 public class TradeRequest {
-    private int userId;
-    private String cryptoSymbol;
-    private double amount;
-    private double price; // Optional: sometimes price is provided explicitly
 
-    // Getters and Setters
     public int getUserId() {
         return userId;
     }
-
     public void setUserId(int userId) {
+        // to validate
         this.userId = userId;
     }
 
@@ -20,6 +15,7 @@ public class TradeRequest {
     }
 
     public void setCryptoSymbol(String cryptoSymbol) {
+        // to validate
         this.cryptoSymbol = cryptoSymbol;
     }
 
@@ -28,14 +24,11 @@ public class TradeRequest {
     }
 
     public void setAmount(double amount) {
+        // to validate
         this.amount = amount;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    private int userId;
+    private String cryptoSymbol;
+    private double amount;
 }

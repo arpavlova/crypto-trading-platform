@@ -6,18 +6,11 @@ import com.cryptovirtual.cryptovirtualworld.dao.UserDAO;
 import com.cryptovirtual.cryptovirtualworld.dao.TransactionDAO;
 import com.cryptovirtual.cryptovirtualworld.dao.CryptoCoinDAO;
 import com.cryptovirtual.cryptovirtualworld.dao.HasCoinsDAO;
-import com.cryptovirtual.cryptovirtualworld.dao.HasDoneTransactionsDAO;
 import com.cryptovirtual.cryptovirtualworld.model.CryptoCoin;
 import com.cryptovirtual.cryptovirtualworld.model.Transaction;
 import com.cryptovirtual.cryptovirtualworld.model.User;
 import com.cryptovirtual.cryptovirtualworld.request.TradeRequest;
 import java.time.LocalDateTime;
-
-// import org.springframework.http.ResponseEntity;
-// import com.cryptovirtual.cryptovirtualworld.model.HasDoneTransactions;
-// import java.math.BigDecimal;
-// import java.util.HashMap;
-// import java.util.Map;
 
 @Service
 public class TradeService {
@@ -27,9 +20,6 @@ public class TradeService {
 
     @Autowired
     private TransactionDAO transactionDAO;
-
-    @Autowired
-    private HasDoneTransactionsDAO hasDonetransactionDAO;
 
     @Autowired
     private CryptoCoinDAO cryptoCoinDAO;
@@ -44,7 +34,8 @@ public class TradeService {
         double amountToBuy = request.getAmount();
 
         CryptoCoin coin = cryptoCoinDAO.getCoinBySymbol(symbol);
-        if (coin == null) { //would be null at all
+        if (coin == null) { //null?
+
             return "Crypto symbol not found.";
         }
         double price = coin.getPrice();
@@ -53,6 +44,7 @@ public class TradeService {
 
         double currentBalance = user.getBalance();
         if (totalPrice > currentBalance) {
+
             return "Insufficient balance.";
         }
 
@@ -68,6 +60,7 @@ public class TradeService {
         transaction.setDateOfTransaction(LocalDateTime.now());
         transactionDAO.save(transaction);
         //hasDonetransactionDAO.insert(userId, transaction.getId());
+
         return "Successfully bought " + amountToBuy + " of " + symbol;
     }
 
@@ -79,13 +72,15 @@ public class TradeService {
         double amountToSell = request.getAmount();
 
         CryptoCoin coin = cryptoCoinDAO.getCoinBySymbol(symbol);
-        if (coin == null) { //would be null at all
+        if (coin == null) { //niull?
+
             return "Crypto symbol not found.";
         }
         double price = coin.getPrice();
 
         double userCryptoAmount = hasCoinsDAO.getUserCoinAmount(userId, symbol);
         if (userCryptoAmount < amountToSell) {
+
              return "Unsuccessfully sold " + "your current ammount of " + symbol + " is " + userCryptoAmount;
         }
         double currentBalance = user.getBalance();
@@ -115,12 +110,14 @@ public class TradeService {
         transaction.setAmount(amount);
         transaction.setDateOfTransaction(LocalDateTime.now());
         transactionDAO.save(transaction);
+
         return "User " + userDAO.getUsernameById(userId) + " deposited " + amount;
     }
 
     public String withdraw(int userId, double amount) {
         double currentBalance = userDAO.getBalanceById(userId);
         if(currentBalance < amount){
+
             return "Insufficient balance.";
         }
         userDAO.updateBalanceById(userId, currentBalance - amount);
@@ -130,7 +127,7 @@ public class TradeService {
         transaction.setAmount(amount);
         transaction.setDateOfTransaction(LocalDateTime.now());
         transactionDAO.save(transaction);
+
         return "User " + userDAO.getUsernameById(userId) + " withdrawed " + amount;
     }
-    
 }

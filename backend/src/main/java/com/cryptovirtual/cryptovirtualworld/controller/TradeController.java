@@ -1,32 +1,16 @@
 package com.cryptovirtual.cryptovirtualworld.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import com.cryptovirtual.cryptovirtualworld.dao.TransactionDAO;
-import com.cryptovirtual.cryptovirtualworld.model.Transaction;
-// import java.math.BigDecimal;
-// import java.time.LocalDate;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
-// import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.http.ResponseEntity;
-// import com.cryptovirtual.cryptovirtualworld.dao.CryptoCoinDAO;
 import com.cryptovirtual.cryptovirtualworld.dao.UserDAO;
-// import com.cryptovirtual.cryptovirtualworld.service.TradeService;
-// import com.cryptovirtual.cryptovirtualworld.request.TradeRequest;
 import com.cryptovirtual.cryptovirtualworld.request.TradeRequest;
 import com.cryptovirtual.cryptovirtualworld.service.TradeService;
 
@@ -38,15 +22,7 @@ public class TradeController {
     @Autowired
     private TradeService tradeService;
     @Autowired
-    private TransactionDAO transactionDAO;
-    @Autowired
     private UserDAO userDAO;
-
-    
-    // @GetMapping("/{Userid}/transactions")
-    // public List<Transaction> getTransactionsByUser(@PathVariable int userId, @PathVariable int id) {
-    //     return transactionDAO.getTransactionsByUserId(id);
-    // }
 
     @PostMapping("/{userId}/buy")
      public ResponseEntity<Map<String, Object>> buy(@PathVariable int userId, @RequestBody TradeRequest req) {
@@ -55,6 +31,7 @@ public class TradeController {
         Map<String, Object> response = new HashMap<>();
         response.put("message", result);
         response.put("balance", updatedBalance);
+
         return ResponseEntity.ok(response);
     }
 
@@ -65,6 +42,7 @@ public class TradeController {
         Map<String, Object> response = new HashMap<>();
         response.put("message", result);
         response.put("balance", updatedBalance);
+
         return ResponseEntity.ok(response);
     }
 
@@ -72,10 +50,10 @@ public class TradeController {
     public ResponseEntity<Map<String, Object>> deposit(@PathVariable int userId, @RequestBody TradeRequest req) {
         String result = tradeService.deposit(userId, req.getAmount());
         double updatedBalance = userDAO.getBalanceById(userId);
-        //double updatedBalance = userDAO.getUserById(userId).getBalance();
         Map<String, Object> response = new HashMap<>();
         response.put("message", result);
         response.put("balance", updatedBalance);
+
         return ResponseEntity.ok(response);
     }
 
@@ -86,6 +64,11 @@ public class TradeController {
         Map<String, Object> response = new HashMap<>();
         response.put("message", result);
         response.put("balance", updatedBalance);
+
         return ResponseEntity.ok(response);
     }
+
+    //TODO:
+    // getTransactionsByUser
+    //...
 }

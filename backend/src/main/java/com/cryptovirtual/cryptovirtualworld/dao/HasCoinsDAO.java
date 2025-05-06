@@ -1,5 +1,4 @@
 package com.cryptovirtual.cryptovirtualworld.dao;
-import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,7 +18,6 @@ public class HasCoinsDAO {
                          "ON DUPLICATE KEY UPDATE Amount = VALUES(Amount)";
             jdbcTemplate.update(sql, userId, symbol, amount);
         }                
-         
     }
 
     public Double getUserCoinAmount(int userId, String symbol) {

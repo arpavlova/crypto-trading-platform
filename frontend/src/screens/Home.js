@@ -6,15 +6,13 @@ const Home = () => {
   const {
     balance,
     setBalance,
-    holdings,
-    setHoldings,
-    transactions,
-    setTransactions,
+    gainLoss,
     setMessage,
     message,
     userId,
     setErrorMessage,
-    errorMessage
+    errorMessage,
+    handleTotalGains
   } = useContext(AccountContext);
 
   const [amount, setAmount] = useState("");
@@ -33,7 +31,8 @@ const Home = () => {
         setErrorMessage("Buy failed: " + data.message);
         return;
       }
-  
+
+      handleTotalGains(userId);
       setBalance(data.balance);
       setMessage(data.message);
       setErrorMessage("");
@@ -60,6 +59,7 @@ const Home = () => {
       }
       setBalance(data.balance);
       setMessage(data.message);
+      handleTotalGains(userId);
       setErrorMessage("");
       setAmount("");
       setCrypto("");
@@ -105,6 +105,7 @@ const Home = () => {
       }
       setBalance(data.balance);
       setMessage(data.message);
+      handleTotalGains()
       setErrorMessage("");
       setAmount("");
 
@@ -118,18 +119,14 @@ const Home = () => {
     <div className="home">
       <h1 className="text">Crypto Virtual World</h1>
       <h2 className="text">Account Balance: ${balance.toFixed(2)}</h2>
-      {/* <div>
-        <h3>Your Holdings:</h3>
-        {holdings.length === 0 ? (
-          <p className="text">No holdings yet.</p>
-        ) : (
-          holdings.map((holding, index) => (
-            <p key={index} className="text">
-                {holding.name} ({holding.symbol}): {holding.amount} units
-            </p>
-          ))
-        )}
-      </div> */}
+      {gainLoss !== null && (
+        <p
+        className="text"
+        style={{ color: gainLoss >= 0 ? "lightgreen" : "salmon" }}
+      >
+        Total {gainLoss >= 0 ? "Gain" : "Loss"}: {(gainLoss * 100).toFixed(2)}%
+      </p>
+      )}
       <div className="input-container">
         <h3 className="text">Buy/Sell Crypto</h3>
         <input

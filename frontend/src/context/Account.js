@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { gains } from "../api/api.js";
 
 export const AccountContext = createContext();
 
@@ -15,6 +16,27 @@ export const AccountProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [gainLoss, setGainLoss] = useState(null);
 
+  
+  const handleTotalGains = async () => {
+    try {
+
+      setTransactions([]);
+      setMessage("");
+      setHoldings([]);
+
+      const data = await gains(userId);
+      // if (!data.ok) {
+      //   setErrorMessage("Get gains failed: " + data.message);
+      //   return;
+      // }  
+
+      setGainLoss(data);
+
+    } catch (error) {
+      setErrorMessage("Show gains error: " + error.message);
+    }
+  };
+
   return (
     <AccountContext.Provider
       value={{
@@ -30,7 +52,8 @@ export const AccountProvider = ({ children }) => {
         errorMessage,
         setErrorMessage,
         gainLoss, 
-        setGainLoss
+        setGainLoss,
+        handleTotalGains
       }}
     >
       {children}

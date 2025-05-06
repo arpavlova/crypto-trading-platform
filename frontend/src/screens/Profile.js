@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AccountContext } from "../context/Account.js";
-import { reset, history, gains } from "../api/api.js";
+import { reset, history, holding } from "../api/api.js";
 
 const Profile = () => {
 
@@ -14,21 +14,38 @@ const Profile = () => {
     setMessage, 
     message,
     gainLoss,
-    setGainLoss
+    setGainLoss,
+    handleTotalGains,
+    setHoldings,
+    holdings
   } = useContext(AccountContext);
+
+  useEffect(() => {
+    return () => {
+      setTransactions([]);
+      setMessage("");
+      setGainLoss(null);
+      setHoldings([]);
+    };
+  }, []);
 
   const handleReset = async () => {
       try {
+
+        setHoldings([]);
+        setTransactions([]);
+        setGainLoss(null);
+
         const response = await reset(userId);
         const data = await response.json();
+
         if (!response.ok) {
           setErrorMessage("Reset failed: " + data.message);
           return;
         }    
         setBalance(data.balance);
         setMessage(data.message);
-        setTransactions([]);
-        setGainLoss(null);
+ 
   
       } catch (error) {
         setErrorMessage("Reset error: " + error.message);
@@ -37,10 +54,15 @@ const Profile = () => {
 
     const handleHistory = async () => {
       try {
+
+        setTransactions([]);
+        setMessage("");
+        setGainLoss(null);
+        setHoldings([]);
+
         const data = await history(userId);
         if (!data || data.length === 0) {
           setMessage("No transactions yet.");
-          setTransactions([]);
           return;
         }
         const formattedHistory = data.map((transaction) => ({
@@ -50,22 +72,38 @@ const Profile = () => {
           amount: transaction.amount,
           price: transaction.cryptoPrice,
         }));
+
         setTransactions(formattedHistory);
-        setMessage("");
-        setGainLoss(null);
+ 
       } catch (error) {
         setErrorMessage("Show history error: " + error.message);
       }
     };
 
-    const handleTotalGains = async () => {
+    const handleHoldings = async () => {
       try {
-        const data = await gains(userId); // Already returns JSON-parsed double
-        setGainLoss(data);
+
         setTransactions([]);
         setMessage("");
+        setGainLoss(null);
+
+        const data = await holding(userId);
+
+        if (!data || data.length === 0) {
+          setMessage("No holdings yet.");
+
+          return;
+        }
+        const formattedHoldings = data.map((holding) => ({
+          symbol: holding.cryptoSymbol,
+          amount: holding.amount,
+          price: holding.price,
+        }));
+
+        setHoldings(formattedHoldings);
+
       } catch (error) {
-        setErrorMessage("Show gains error: " + error.message);
+        setErrorMessage("Show history error: " + error.message);
       }
     };
 
@@ -76,6 +114,7 @@ const Profile = () => {
         <button onClick={handleHistory}>History</button>
         <button onClick={handleReset}>Reset</button>
         <button onClick={handleTotalGains}>Gains</button>
+        <button onClick={handleHoldings}>Holdings</button>
       </div>
       {message && <p className="text">{message}</p>}
       {gainLoss !== null && (
@@ -103,8 +142,23 @@ const Profile = () => {
       ))}
       </div>
     )}
+    {holdings.length > 0 && (
+      <div className="transaction">
+      {holdings.map((curr, index) => (
+        <div key={index}>
+          <p>
+          {curr.amount} | {curr.symbol} | ${ (curr.price).toFixed(2) }
+          </p>
+        </div>
+      ))}
+      </div>
+    )}
     </div>
   );
 };
+
+
+//todo
+//to include the current price
 
 export default Profile;

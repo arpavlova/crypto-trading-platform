@@ -40,6 +40,10 @@ export const history = (userId) =>
   fetch(`${BASE}/user/${userId}/transactions`)
     .then((res) => res.json());
 
+export const holding = (userId) =>
+  fetch(`${BASE}/user/${userId}/holding`)
+    .then((res) => res.json()); 
+
 export const gains = (userId) =>
   fetch(`${BASE}/user/${userId}/gains`)
     .then((res) => res.json());

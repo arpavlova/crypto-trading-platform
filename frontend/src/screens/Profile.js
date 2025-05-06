@@ -54,17 +54,6 @@ const Profile = () => {
       </div>
       {message && <p className="text">{message}</p>}
       {transactions.length > 0 && (
-      // <div className="transaction">
-      //   {transactions.map((transaction, index) => (
-      //     <div key={index}>
-      //       <p>
-      //         {transaction.timestamp} | {transaction.type} |{" "}
-      //         {transaction.symbol} | {transaction.amount} units | $
-      //         {(transaction.price * transaction.amount).toFixed(2)}
-      //       </p>
-      //     </div>
-      //   ))}
-      // </div>
       <div className="transaction">
       {transactions.map((transaction, index) => (
         <div key={index}>

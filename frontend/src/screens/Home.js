@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "../context/Account";
-import { buy, sell, deposit } from "../api/api.js";
+import { buy, sell, deposit, withdraw } from "../api/api.js";
 
 const Home = () => {
   const {
@@ -70,9 +70,8 @@ const Home = () => {
   };
 
   const handleDeposit = async () => {
-
     if (amount <= 0 || isNaN(amount)) {
-      setErrorMessage("Please enter a valid amount to sell.");
+      setErrorMessage("Please enter a valid amount to deposit.");
       return;
     }
     try {
@@ -86,35 +85,33 @@ const Home = () => {
       setMessage(data.message);
       setErrorMessage("");
       setAmount("");
-      setCrypto("");
 
     } catch (error) {
       setErrorMessage("Deposit error: " + error.message);
     }
   };
 
-  //============================================================================================
-  const handleWithdraw = () => {
+  const handleWithdraw = async () => {
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to withdraw.");
       return;
     }
-    if (amount > balance) {
-      setErrorMessage("Insufficient funds to withdraw.");
-      return;
+    try {
+      const response = await withdraw(userId, parseFloat(amount));
+      const data = await response.json();
+      if (!response.ok) {
+        setErrorMessage("Withdraw failed: " + data.message);
+        return;
+      }
+      setBalance(data.balance);
+      setMessage(data.message);
+      setErrorMessage("");
+      setAmount("");
+
+    } catch (error) {
+      setErrorMessage("Withdraw error: " + error.message);
     }
-    setBalance(balance - parseFloat(amount));
-    const newTransaction = {
-      type: "Withdraw",
-      amount: amount,
-      timestamp: new Date().toLocaleString(),
-    };
-    setTransactions([newTransaction, ...transactions]);
-    setErrorMessage(""); 
-    setAmount("");
-    setCrypto("");
   };
-  //============================================================================================
 
 
   return (

@@ -6,12 +6,12 @@ console.log("API Base URL:", BASE);
 //     .then((res) => res.json());
 
 
-// export const withdraw = (userId, amount) =>
-//   fetch(`${BASE}/user/${userId}/withdraw`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ amount }),
-//   });
+export const withdraw = (userId, amount) =>
+  fetch(`${BASE}/trade/${userId}/withdraw`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount }),
+  });
 
 
 export const deposit = (userId, amount) =>

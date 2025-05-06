@@ -15,24 +15,17 @@ import com.cryptovirtual.cryptovirtualworld.model.User;
 @Repository
 public class UserDAO {
 
-
-    // List<User> getAllUsers();
-    // void insertUser(User user);
-    // void updateUser(User user);
-    // void deleteUser(int id);
-
-    // UserDAO userDAO = new UserDAOImpl(myDbConnection);
-    // User user = userDAO.getUserById(42);
-
-
-
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public User getUserById(int userId) {
         String sql = "SELECT * FROM Users WHERE Id = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
+    }
+
+    public Double getBalanceById(int userId) {
+        String sql = "SELECT Balance FROM Users WHERE Id = ?";
+        return jdbcTemplate.queryForObject(sql, Double.class, userId);
     }
 
     public String getUsernameById(int userId) {
@@ -45,14 +38,14 @@ public class UserDAO {
         jdbcTemplate.update(sql, newBalance, userId);
     }
 
-    public List<Transaction> getAllTransactionsByUserId(int userId) {
-        String sql = "SELECT * FROM GetTransactionsByUser(?)";
+    public List<Transaction> getTransactionsByUserId(int userId) {
+        String sql = "SELECT * FROM Transactions WHERE UserId = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Transaction.class), userId);
     }
 
-    public List<Transaction> getTransactionsByUserInTimePeriod(int userId, LocalDate startDate, LocalDate endDate) {
-        String sql = "SELECT * FROM GetTransactionsByUserInTimePeriod(?, ?, ?)";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Transaction.class), userId, startDate, endDate);
+    public List<Transaction> getAllTransactionsByUserId(int userId) {
+        String sql = "SELECT * FROM Transactions WHERE UserId = ? ORDER BY DateOfTransaction DESC";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Transaction.class), userId);
     }
 
     public BigDecimal getTotalGainsRatio(int userId, LocalDate startDate, LocalDate endDate) {

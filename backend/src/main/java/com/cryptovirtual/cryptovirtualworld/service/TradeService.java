@@ -37,12 +37,6 @@ public class TradeService {
     @Autowired
     private HasCoinsDAO hasCoinsDAO;
 
-    // public String resetAccount(int userId) {
-    //     transactionDAO.deleteAllTransactionsByUser(userId);
-    //     userDAO.resetBalance(userId);
-    //     return "Account reset for user " + userId;
-    // }
-
     public String buy(int userId, TradeRequest request) {
 
         User user = userDAO.getUserById(userId);
@@ -74,8 +68,6 @@ public class TradeService {
         transaction.setDateOfTransaction(LocalDateTime.now());
         transactionDAO.save(transaction);
         //hasDonetransactionDAO.insert(userId, transaction.getId());
-
-
         return "Successfully bought " + amountToBuy + " of " + symbol;
     }
 
@@ -114,4 +106,16 @@ public class TradeService {
 
         return "Successfully sold " + amountToSell + " of " + symbol;
     }
+
+    public String deposit(int userId, double amount) {
+        userDAO.updateBalanceById(userId, userDAO.getBalanceById(userId) + amount);
+        Transaction transaction = new Transaction();
+        transaction.setType("Deposit");
+        transaction.setUserId(userId);
+        transaction.setAmount(amount);
+        transaction.setDateOfTransaction(LocalDateTime.now());
+        transactionDAO.save(transaction);
+        return "User " + userDAO.getUsernameById(userId) + " deposited " + amount;
+    }
+    
 }

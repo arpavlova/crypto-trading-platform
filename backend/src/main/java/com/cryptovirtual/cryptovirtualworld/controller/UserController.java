@@ -8,6 +8,7 @@ import com.cryptovirtual.cryptovirtualworld.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -23,38 +24,37 @@ public class UserController {
 
     @Autowired
     private UserDAO userDAO;
+    // @Autowired
+    // private TransactionDAO transactionDAO;
+    // @Autowired
+    // private CryptoCoinDAO cryptoCoinDAO;
     @Autowired
-    private TransactionDAO transactionDAO;
-    @Autowired
-    private CryptoCoinDAO cryptoCoinDAO;
-     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
-    public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
-    }
+    // @GetMapping("/")
+    // public List<User> getAllUsers() {
+    //     return userDAO.getAllUsers();
+    // }
 
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable int id) {
-        return userDAO.getUserById(id);
-    }
+    // @GetMapping("/{userId}")
+    // public User getUserById(@PathVariable int id) {
+    //     return userDAO.getUserById(id);
+    // }
 
-    @PostMapping("/")
-    public void insertUser(@RequestBody User user) {
-        userDAO.insertUser(user);
-    }
+    // @PostMapping("/")
+    // public void insertUser(@RequestBody User user) {
+    //     userDAO.insertUser(user);
+    // }
 
-    @PutMapping("/")
-    public void updateUser(@RequestBody User user) {
-        userDAO.updateUser(user);
-    }
+    // @PutMapping("/")
+    // public void updateUser(@RequestBody User user) {
+    //     userDAO.updateUser(user);
+    // }
 
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable int id) {
-        userDAO.deleteUser(id);
-    }
-
+    // @DeleteMapping("/{userId}")
+    // public void deleteUser(@PathVariable int id) {
+    //     userDAO.deleteUser(id);
+    // }
     
     @PostMapping("/{userId}/reset")
     public ResponseEntity<?> resetAccount(@PathVariable int userId) {
@@ -66,31 +66,27 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-
-
-    // ------------------- Transactions -------------------
-
-    @GetMapping("/{id}/transactions")
-    public List<Transaction> getTransactionsByUser(@PathVariable int id) {
-        return transactionDAO.getTransactionsByUserId(id);
+    @GetMapping("/{userId}/transactions")
+    public List<Transaction> getTransactionsByUser(@PathVariable int userId) {
+        return userDAO.getAllTransactionsByUserId(userId);
     }
 
-    @GetMapping("/{id}/transactions/range")
-    public List<Transaction> getTransactionsByUserInPeriod(@PathVariable int id,
-                                                           @RequestParam String start,
-                                                           @RequestParam String end) {
-        return userDAO.getTransactionsByUserInTimePeriod(id, LocalDate.parse(start), LocalDate.parse(end));
-    }
+    // @GetMapping("/{id}/transactions/range")
+    // public List<Transaction> getTransactionsByUserInPeriod(@PathVariable int id,
+    //                                                        @RequestParam String start,
+    //                                                        @RequestParam String end) {
+    //     return userDAO.getTransactionsByUserInTimePeriod(id, LocalDate.parse(start), LocalDate.parse(end));
+    // }
 
-    @GetMapping("/{id}/gain-loss")
-    public BigDecimal getTotalGainsRatio(@PathVariable int id,
-                                         @RequestParam String start,
-                                         @RequestParam String end) {
-        return userDAO.getTotalGainsRatio(id, LocalDate.parse(start), LocalDate.parse(end));
-    }
+    // @GetMapping("/{id}/gain-loss")
+    // public BigDecimal getTotalGainsRatio(@PathVariable int id,
+    //                                      @RequestParam String start,
+    //                                      @RequestParam String end) {
+    //     return userDAO.getTotalGainsRatio(id, LocalDate.parse(start), LocalDate.parse(end));
+    // }
 
-    @GetMapping("/coins")
-    public List<CryptoCoin> getAllCoins() {
-        return cryptoCoinDAO.getAllCoins();
-    }
+    // @GetMapping("/coins")
+    // public List<CryptoCoin> getAllCoins() {
+    //     return cryptoCoinDAO.getAllCoins();
+    // }
 }

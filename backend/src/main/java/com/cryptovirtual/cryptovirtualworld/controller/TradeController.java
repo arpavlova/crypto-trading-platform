@@ -50,19 +50,16 @@ public class TradeController {
 
     @PostMapping("/{userId}/buy")
      public ResponseEntity<Map<String, Object>> buy(@PathVariable int userId, @RequestBody TradeRequest req) {
-
         String result = tradeService.buy(userId, req);
         double updatedBalance = userDAO.getUserById(userId).getBalance();
         Map<String, Object> response = new HashMap<>();
         response.put("message", result);
         response.put("balance", updatedBalance);
         return ResponseEntity.ok(response);
-
-        //return tradeService.buy(1, req);
     }
 
     @PostMapping("/{userId}/sell")
-    public ResponseEntity<?> sell(@PathVariable int userId, @RequestBody TradeRequest req) {
+    public ResponseEntity<Map<String, Object>> sell(@PathVariable int userId, @RequestBody TradeRequest req) {
         String result = tradeService.sell(userId, req);
         double updatedBalance = userDAO.getUserById(userId).getBalance();
         Map<String, Object> response = new HashMap<>();
@@ -71,13 +68,13 @@ public class TradeController {
         return ResponseEntity.ok(response);
     }
 
-    // @GetMapping("/transactions/{userId}")
-    // public ResponseEntity<List<Transaction>> getTransactions(@PathVariable int userId) {
-    //     return ResponseEntity.ok(tradeService.getTransactions(userId));
-    // }
-
-    // @PostMapping("/reset/{userId}")
-    // public ResponseEntity<?> reset(@PathVariable int userId) {
-    //     return tradeService.resetAccount(userId);
-    // }
+    @PostMapping("/{userId}/deposit")
+    public ResponseEntity<Map<String, Object>> deposit(@PathVariable int userId, @RequestBody TradeRequest req) {
+        String result = tradeService.deposit(userId, req.getAmount());
+        double updatedBalance = userDAO.getUserById(userId).getBalance();
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", result);
+        response.put("balance", updatedBalance);
+        return ResponseEntity.ok(response);
+    }
 }

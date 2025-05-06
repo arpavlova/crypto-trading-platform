@@ -27,6 +27,7 @@ public class UserService {
     @Autowired
     private HasCoinsDAO hasCoinsDAO;
 
+
     public String resetAccount(int userId) {
 
         //transactionDAO.deleteAllTransactionsByUser(userId); //the history should remain
@@ -34,5 +35,6 @@ public class UserService {
         hasCoinsDAO.deleteUserCoins(userId);
         return "Account reset for user " + userDAO.getUsernameById(userId);
     }
+
     private static final double INITIAL_BALANCE = 1000.0;
 }

@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.cryptovirtual.cryptovirtualworld.model.CryptoCoin;
+import com.cryptovirtual.cryptovirtualworld.model.Holding;
 import com.cryptovirtual.cryptovirtualworld.model.Transaction;
 import com.cryptovirtual.cryptovirtualworld.model.User;
 
@@ -51,6 +53,11 @@ public class UserDAO {
     public Double getTotalGains(int userId) { //also in specified time interval
         String sql = "SELECT GetTotalGains(?)";
         return jdbcTemplate.queryForObject(sql, Double.class, userId);
+    }
+
+    public List<Holding> getAllHoldingsByUserId(int userId) {
+        String sql = "CALL GetAllUserHoldings(?)";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Holding.class), userId);
     }
 
     // aTODO

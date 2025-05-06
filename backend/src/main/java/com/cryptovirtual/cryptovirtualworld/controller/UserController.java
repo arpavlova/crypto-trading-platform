@@ -38,6 +38,12 @@ public class UserController {
         return userDAO.getAllTransactionsByUserId(userId);
     }
 
+    @GetMapping("/{userId}/holding")
+    public List<Holding> getholdingsByUser(@PathVariable int userId) {
+
+        return userDAO.getAllHoldingsByUserId(userId);
+    }
+
     @GetMapping("/{userId}/gains")
     public Double gains(@PathVariable int userId) {
 

@@ -1,5 +1,33 @@
 USE CRYPTOWORLD;
 
+-- DROP FUNCTION IF EXISTS GetAllUserHoldings;
+-- CREATE FUNCTION GetAllUserHoldings(userId INT)
+-- RETURNS TABLE (CryptoSymbol VARCHAR(10), Amount DECIMAL(18, 2), CryptoPrice DECIMAL(18, 2))
+-- BEGIN
+-- SELECT 
+--     h.CryptoSymbol,
+--     h.Amount,
+--     c.Price
+-- FROM HasCoins h
+-- JOIN CryptoCoins c ON h.CryptoSymbol = c.Symbol
+-- WHERE h.UserId = userId
+-- END;
+
+DROP PROCEDURE IF EXISTS GetAllUserHoldings;
+
+CREATE PROCEDURE GetAllUserHoldings(IN userId INT)
+BEGIN
+    SELECT 
+        h.CryptoSymbol,
+        h.Amount,
+        c.Price AS CryptoPrice
+    FROM HasCoins h
+    JOIN CryptoCoins c ON h.CryptoSymbol = c.Symbol
+    WHERE h.UserId = userId;
+END;
+
+
+
 
 DROP FUNCTION IF EXISTS GetTotalGains;
 CREATE FUNCTION GetTotalGains(userId INT)

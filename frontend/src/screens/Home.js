@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "../context/Account";
-import { buy } from "../api/api.js";
+import { buy, sell } from "../api/api.js";
 
 const Home = () => {
   const {
@@ -11,34 +11,35 @@ const Home = () => {
     transactions,
     setTransactions,
     setMessage,
-    message
+    message,
+    userId,
+    setErrorMessage,
+    errorMessage
   } = useContext(AccountContext);
 
   const [amount, setAmount] = useState("");
   const [crypto, setCrypto] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  //const [errorMessage, setErrorMessage] = useState("");
 
 
 
 //=================================================================================================================================
   const handleBuy = async () => {
+
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to buy.");
       return;
     }
     try {
-      const response = await buy(1, crypto, parseFloat(amount));
-      const mess = await response.text(); 
-
-      console.log("Full response:", response);
-      console.log("Response body:", mess)
-
+      const response = await buy(userId, crypto, parseFloat(amount));
+      const data = await response.json();
       if (!response.ok) {
-        setErrorMessage("Buy failed: " + mess);
+        setErrorMessage("Buy failed: " + data.message);
         return;
       }
-
-      setMessage(mess);
+  
+      setBalance(data.balance);
+      setMessage(data.message);
       setErrorMessage("");
       setAmount("");
       setCrypto("");
@@ -50,44 +51,29 @@ const Home = () => {
 //=================================================================================================================================
 
 
-  const handleSell = () => {
+const handleSell = async () => {
+
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to sell.");
       return;
     }
-    
+    try {
+      const response = await sell(userId, crypto, parseFloat(amount));
+      const data = await response.json();
+      if (!response.ok) {
+        setErrorMessage("Sell failed: " + data.message);
+        return;
+      }
+  
+      setBalance(data.balance);
+      setMessage(data.message);
+      setErrorMessage("");
+      setAmount("");
+      setCrypto("");
 
-    //============================================================================================   
-    //call backend to update the current balance - 
-      //check if crypto symbol is valid
-      //get real price for single amount of the valid crypto 
-        //check current amount - update ( holdings + balance + transaction history) or error
-    const holding = holdings.find((h) => h.symbol === crypto);
-    if (!holding || holding.amount < amount) {
-      setErrorMessage("You don't have enough crypto to sell.");
-      return;
+    } catch (error) {
+      setErrorMessage("Sell error: " + error.message);
     }
-    const totalPrice = amount * 100; // real price
-    setBalance(balance + totalPrice);
-    holding.amount -= amount;
-    if (holding.amount === 0) {
-      setHoldings(holdings.filter((h) => h.symbol !== crypto));
-    }
-    const newTransaction = {
-      type: "Sell",
-      symbol: crypto,
-      amount: amount,
-      price: 100, // real price
-      timestamp: new Date().toLocaleString(),
-    };
-    setTransactions([newTransaction, ...transactions]);
-    //============================================================================================
-
-
-
-    setErrorMessage(""); // Reset error message
-    setAmount(""); // Reset amount
-    setCrypto(""); // Reset crypto
   };
 
   const handleDeposit = () => {

@@ -3,12 +3,16 @@ import React, { createContext, useState } from "react";
 export const AccountContext = createContext();
 
 export const AccountProvider = ({ children }) => {
-  const INITIAL_BALANCE = 10000;
+
+  const INITIAL_BALANCE = 10000; // temporary
+  const userId = 1; // temporary
+
 
   const [balance, setBalance] = useState(INITIAL_BALANCE);
   const [holdings, setHoldings] = useState([]); // [{symbol, name, amount}]
   const [transactions, setTransactions] = useState([]); // [{type, symbol, amount, price, timestamp}]
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   
 
@@ -32,12 +36,12 @@ export const AccountProvider = ({ children }) => {
     setMessage("");
   };
 
-  const resetAccount = () => {
-    setBalance(INITIAL_BALANCE);
-    setHoldings([]);
-    setTransactions([]);
-    setMessage("");
-  };
+  // const resetAccount = () => {
+  //   setBalance(INITIAL_BALANCE);
+  //   setHoldings([]);
+  //   setTransactions([]);
+  //   setMessage("");
+  // };
 
 
   return (
@@ -49,10 +53,12 @@ export const AccountProvider = ({ children }) => {
         setHoldings,
         transactions,
         setTransactions,
-        resetAccount,
         transactionsHistory,
         message,
-        setMessage
+        setMessage,
+        userId,
+        errorMessage,
+        setErrorMessage
       }}
     >
       {children}

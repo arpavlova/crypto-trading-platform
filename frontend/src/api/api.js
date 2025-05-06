@@ -27,11 +27,11 @@ export const buy = (userId, cryptoSymbol, amount) =>
   }
 );
 
-export const sell = (userId, symbol, amount) =>
+export const sell = (userId, cryptoSymbol, amount) =>
   fetch(`${BASE}/trade/${userId}/sell`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ symbol, amount }),
+    body: JSON.stringify({ cryptoSymbol, amount }),
   });
 
 
@@ -39,7 +39,7 @@ export const getTransactions = (userId) =>
   fetch(`${BASE}/trade/transactions/${userId}`)
     .then((res) => res.json());
 
-export const resetAccount = (userId) =>
-  fetch(`${BASE}/trade/reset/${userId}`, {
+export const reset = (userId) =>
+  fetch(`${BASE}/user/${userId}/reset`, {
     method: "POST",
   });

@@ -1,9 +1,13 @@
 package com.cryptovirtual.cryptovirtualworld.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +24,7 @@ import com.cryptovirtual.cryptovirtualworld.model.Transaction;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.http.ResponseEntity;
 // import com.cryptovirtual.cryptovirtualworld.dao.CryptoCoinDAO;
-// import com.cryptovirtual.cryptovirtualworld.dao.UserDAO;
+import com.cryptovirtual.cryptovirtualworld.dao.UserDAO;
 // import com.cryptovirtual.cryptovirtualworld.service.TradeService;
 // import com.cryptovirtual.cryptovirtualworld.request.TradeRequest;
 import com.cryptovirtual.cryptovirtualworld.request.TradeRequest;
@@ -35,22 +39,37 @@ public class TradeController {
     private TradeService tradeService;
     @Autowired
     private TransactionDAO transactionDAO;
+    @Autowired
+    private UserDAO userDAO;
 
     
-    @GetMapping("/{Userid}/transactions")
-    public List<Transaction> getTransactionsByUser(@PathVariable int id) {
-        return transactionDAO.getTransactionsByUserId(id);
-    }
+    // @GetMapping("/{Userid}/transactions")
+    // public List<Transaction> getTransactionsByUser(@PathVariable int userId, @PathVariable int id) {
+    //     return transactionDAO.getTransactionsByUserId(id);
+    // }
 
     @PostMapping("/{userId}/buy")
-     public /*ResponseEntity<?>*/ String buy(@RequestBody TradeRequest req) {
-        return tradeService.buy(1, req);
+     public ResponseEntity<Map<String, Object>> buy(@PathVariable int userId, @RequestBody TradeRequest req) {
+
+        String result = tradeService.buy(userId, req);
+        double updatedBalance = userDAO.getUserById(userId).getBalance();
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", result);
+        response.put("balance", updatedBalance);
+        return ResponseEntity.ok(response);
+
+        //return tradeService.buy(1, req);
     }
 
-    // @PostMapping("/{userId}//sell")
-    // public ResponseEntity<?> sell(@RequestBody TradeRequest req) {
-    //     return tradeService.sell(req);
-    // }
+    @PostMapping("/{userId}/sell")
+    public ResponseEntity<?> sell(@PathVariable int userId, @RequestBody TradeRequest req) {
+        String result = tradeService.sell(userId, req);
+        double updatedBalance = userDAO.getUserById(userId).getBalance();
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", result);
+        response.put("balance", updatedBalance);
+        return ResponseEntity.ok(response);
+    }
 
     // @GetMapping("/transactions/{userId}")
     // public ResponseEntity<List<Transaction>> getTransactions(@PathVariable int userId) {

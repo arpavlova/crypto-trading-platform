@@ -2,16 +2,23 @@ package com.cryptovirtual.cryptovirtualworld.controller;
 
 import com.cryptovirtual.cryptovirtualworld.dao.*;
 import com.cryptovirtual.cryptovirtualworld.model.*;
+// import com.cryptovirtual.cryptovirtualworld.request.TradeRequest;
+// import com.cryptovirtual.cryptovirtualworld.service.TradeService;
+import com.cryptovirtual.cryptovirtualworld.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -20,6 +27,8 @@ public class UserController {
     private TransactionDAO transactionDAO;
     @Autowired
     private CryptoCoinDAO cryptoCoinDAO;
+     @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public List<User> getAllUsers() {
@@ -45,6 +54,19 @@ public class UserController {
     public void deleteUser(@PathVariable int id) {
         userDAO.deleteUser(id);
     }
+
+    
+    @PostMapping("/{userId}/reset")
+    public ResponseEntity<?> resetAccount(@PathVariable int userId) {
+        String result = userService.resetAccount(userId);
+        double updatedBalance = userDAO.getUserById(userId).getBalance();
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", result);
+        response.put("balance", updatedBalance);
+        return ResponseEntity.ok(response);
+    }
+
+
 
     // ------------------- Transactions -------------------
 

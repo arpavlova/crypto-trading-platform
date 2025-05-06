@@ -1,7 +1,5 @@
 package com.cryptovirtual.cryptovirtualworld.model;
 
-import java.math.BigDecimal;
-
 public class HasCoin {
     private int userId;
     private String cryptoSymbol;
@@ -10,7 +8,7 @@ public class HasCoin {
         return userId;
     }
     
-    public HasCoin(int userId, String cryptoSymbol, BigDecimal amount) {
+    public HasCoin(int userId, String cryptoSymbol, double amount) {
         this.userId = userId;
         this.cryptoSymbol = cryptoSymbol;
         this.amount = amount;
@@ -22,11 +20,11 @@ public class HasCoin {
     public void setCryptoSymbol(String cryptoSymbol) {
         this.cryptoSymbol = cryptoSymbol;
     }
-    public BigDecimal getAmount() {
+    public double getAmount() {
         return amount;
     }
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
-    private BigDecimal amount;
+    private double amount;
 }

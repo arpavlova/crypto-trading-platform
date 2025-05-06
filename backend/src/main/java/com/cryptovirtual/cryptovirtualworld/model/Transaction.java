@@ -1,6 +1,4 @@
 package com.cryptovirtual.cryptovirtualworld.model;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Transaction {
@@ -21,6 +19,7 @@ public class Transaction {
     private String cryptoSymbol;
     private double cryptoPrice;
     private double amount;
+    
     public int getId() {
         return id;
     }

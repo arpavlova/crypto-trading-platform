@@ -42,4 +42,9 @@ public class TransactionDAO {
         String sql = "SELECT * FROM Transactions WHERE UserId = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Transaction.class), userId);
     }
+
+    public void deleteAllTransactionsByUser(int userId) {
+        String sql = "DELETE FROM Users WHERE Id = ?";
+        jdbcTemplate.update(sql, userId);
+    }
 }

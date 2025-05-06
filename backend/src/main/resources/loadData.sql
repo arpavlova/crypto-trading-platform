@@ -18,25 +18,25 @@ VALUES
   ('SOL', 150.75),
   ('ADA', 0.45);
 
-INSERT INTO Transactions (Name, Type, UserId, CryptoSymbol, CryptoPrice, Amount)
-VALUES
-  ('Buy BTC', 'BUY', 1, 'BTC', 64000.00, 0.1),
-  ('Buy ETH', 'BUY', 2, 'ETH', 3100.00, 2.0),
-  ('Sell SOL', 'SELL', 1, 'SOL', 155.00, 5.0),
-  ('Buy ADA', 'BUY', 3, 'ADA', 0.40, 1000.0);
+-- INSERT INTO Transactions (Name, Type, UserId, CryptoSymbol, CryptoPrice, Amount)
+-- VALUES
+--   ('Buy BTC', 'BUY', 1, 'BTC', 64000.00, 0.1),
+--   ('Buy ETH', 'BUY', 2, 'ETH', 3100.00, 2.0),
+--   ('Sell SOL', 'SELL', 1, 'SOL', 155.00, 5.0),
+--   ('Buy ADA', 'BUY', 3, 'ADA', 0.40, 1000.0);
 
 
-INSERT INTO HasDoneTransactions (UserId, TransactionId)
-VALUES
-  (1, 1),
-  (2, 2),
-  (1, 3),
-  (3, 4);
+-- INSERT INTO HasDoneTransactions (UserId, TransactionId)
+-- VALUES
+--   (1, 1),
+--   (2, 2),
+--   (1, 3),
+--   (3, 4);
 
 
-INSERT INTO HasCoins (UserId, CryptoSymbol, Amount)
-VALUES
-  (1, 'BTC', 0.1),
-  (2, 'ETH', 2.0),
-  (1, 'SOL', 0.0),
-  (3, 'ADA', 1000.0);
+-- INSERT INTO HasCoins (UserId, CryptoSymbol, Amount)
+-- VALUES
+--   (1, 'BTC', 0.1),
+--   (2, 'ETH', 2.0),
+--   (1, 'SOL', 0.0),
+--   (3, 'ADA', 1000.0);

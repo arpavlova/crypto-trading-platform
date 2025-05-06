@@ -34,6 +34,12 @@ public class UserDAO {
         String sql = "SELECT * FROM Users WHERE Id = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
     }
+
+    public String getUsernameById(int userId) {
+        String sql = "SELECT Username FROM Users WHERE Id = ?";
+        return jdbcTemplate.queryForObject(sql, String.class, userId);
+    }
+
     public void updateBalanceById(int userId, double newBalance) {
         String sql = "UPDATE Users SET Balance = ? WHERE Id = ?";
         jdbcTemplate.update(sql, newBalance, userId);

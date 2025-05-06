@@ -12,18 +12,28 @@ public class HasCoinsDAO {
     private JdbcTemplate jdbcTemplate;
 
     public void insertOrUpdate(int userId, String symbol, double amount) {
-        String sql = "INSERT INTO HasCoins (UserId, CryptoSymbol, Amount) VALUES (?, ?, ?) " +
-                     "ON DUPLICATE KEY UPDATE Amount = Amount + VALUES(Amount)";
-        jdbcTemplate.update(sql, userId, symbol, amount); 
+        if (amount == 0) {
+            deleteUserCoin(userId, symbol);
+        } else {
+            String sql = "INSERT INTO HasCoins (UserId, CryptoSymbol, Amount) VALUES (?, ?, ?) " +
+                         "ON DUPLICATE KEY UPDATE Amount = VALUES(Amount)";
+            jdbcTemplate.update(sql, userId, symbol, amount);
+        }                
+         
     }
 
-    public BigDecimal getUserCoinAmount(int userId, String symbol) {
+    public Double getUserCoinAmount(int userId, String symbol) {
         String sql = "SELECT Amount FROM HasCoins WHERE UserId = ? AND CryptoSymbol = ?";
-        return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId, symbol);
+        return jdbcTemplate.queryForObject(sql, Double.class, userId, symbol);
     }
 
     public void deleteUserCoin(int userId, String symbol) {
         String sql = "DELETE FROM HasCoins WHERE UserId = ? AND CryptoSymbol = ?";
         jdbcTemplate.update(sql, userId, symbol);
+    }
+
+    public void deleteUserCoins(int userId) {
+        String sql = "DELETE FROM HasCoins WHERE UserId = ?";
+        jdbcTemplate.update(sql, userId);
     }
 }

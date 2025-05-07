@@ -52,3 +52,8 @@ export const reset = (userId) =>
   fetch(`${BASE}/user/${userId}/reset`, {
     method: "POST",
   });
+
+  export const market = () =>
+    fetch(`${BASE}/market/prices`, {
+      method: "GET",
+    });

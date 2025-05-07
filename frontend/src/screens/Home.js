@@ -57,9 +57,10 @@ const Home = () => {
         setErrorMessage("Sell failed: " + data.message);
         return;
       }
+
+      handleTotalGains(userId);
       setBalance(data.balance);
       setMessage(data.message);
-      handleTotalGains(userId);
       setErrorMessage("");
       setAmount("");
       setCrypto("");
@@ -70,6 +71,7 @@ const Home = () => {
   };
 
   const handleDeposit = async () => {
+    
     if (amount <= 0 || isNaN(amount)) {
       setErrorMessage("Please enter a valid amount to deposit.");
       return;

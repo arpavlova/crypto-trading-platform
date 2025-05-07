@@ -9,6 +9,7 @@
 \usepackage{titlesec}
 \usepackage{times}
 \usepackage{courier}
+\usepackage{float}
 \usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in]{geometry}
 \renewcommand{\baselinestretch}{1}
 
@@ -193,6 +194,40 @@ React sends requests to Spring Boot backend via REST API.
     \item \texttt{GET \$\{BASE\}/user/\$\{userId\}/reset}
     \item \texttt{should be integrated: {GET \$\{BASE\}/market/prices}}
 \end{itemize}
+
+\section{Testing}
+\subsection{Frontend Integration Testing}
+Frontend React application was tested manually via the browser. The following screenshots show different stages of user interaction:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{homePage.png}
+    \caption{Home Page – General view}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{buy.png}
+    \caption{Successful buy view – User bought 10 ADA coins}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{sell.png}
+    \caption{Successful sell view – User sold 5 ADA coins}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{market.png}
+    \caption{Market – Top 20 crypto coins with their values}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{transactions.png}
+    \caption{Transaction History – Past trades are shown with timestamps and values}
+\end{figure}
 
 \section{Dependencies}
 

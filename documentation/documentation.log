@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.1)  7 MAY 2025 10:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.1)  7 MAY 2025 11:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -276,14 +276,21 @@ Package: titlesec 2023/10/27 v2.16 Sectioning titles
 Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 ) (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\courier.sty
 Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
+) (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count296
+\float@exts=\toks29
+\float@box=\box57
+\@float@everytoks=\toks30
+\@floatcapt=\box58
 ) (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count296
-\Gm@cntv=\count297
-\c@Gm@tempcnt=\count298
+\Gm@cnth=\count297
+\Gm@cntv=\count298
+\c@Gm@tempcnt=\count299
 \Gm@bindingoffset=\dimen166
 \Gm@wd@mp=\dimen167
 \Gm@odd@mp=\dimen168
@@ -292,57 +299,57 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen171
 \Gm@layouthoffset=\dimen172
 \Gm@layoutvoffset=\dimen173
-\Gm@dimlist=\toks29
+\Gm@dimlist=\toks31
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 39.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 40.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ) (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count299
-\l__pdf_internal_box=\box57
+\l__color_backend_stack_int=\count300
+\l__pdf_internal_box=\box59
 ) (documentation.aux)
 \openout1 = `documentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count300
+\scratchcounter=\count301
 \scratchdimen=\dimen174
-\scratchbox=\box58
-\nofMPsegments=\count301
-\nofMParguments=\count302
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count303
+\scratchbox=\box60
+\nofMPsegments=\count302
+\nofMParguments=\count303
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count304
 \MPscratchDim=\dimen175
-\MPnumerator=\count304
-\makeMPintoPDFobject=\count305
-\everyMPtoPDFconversion=\toks31
+\MPnumerator=\count305
+\makeMPintoPDFobject=\count306
+\everyMPtoPDFconversion=\toks33
 ) (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count306
-Package hyperref Info: Link coloring OFF on input line 39.
+\c@lstlisting=\count307
+Package hyperref Info: Link coloring OFF on input line 40.
  (documentation.out) (documentation.out)
 \@outlinefile=\write3
 \openout3 = `documentation.out'.
@@ -392,53 +399,106 @@ Package hyperref Info: Link coloring OFF on input line 39.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 \newpage
+l.54 \newpage
               [1]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 84.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 85.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [2]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 114.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 115.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (36.93658pt too wide) in paragraph at lines 116--117
+Overfull \hbox (36.93658pt too wide) in paragraph at lines 117--118
 []\OT1/pcr/m/n/12 Transactions (Id, Name, Type, DateOfTransaction, CryptoSymbol, CryptoType,
  []
 
 (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/03/11 1.10a listings language file
 ) [3]
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 186.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 187.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
-LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 186.
+LaTeX Font Info:    Trying to load font information for OMS+pcr on input line 187.
  (C:\Users\Agi\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 186.
- [4] [5] [6] (documentation.aux)
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 187.
+ [4]
+<homePage.png, id=200, 1404.74812pt x 682.04813pt>
+File: homePage.png Graphic file (type png)
+<use homePage.png>
+Package pdftex.def Info: homePage.png  used on input line 204.
+(pdftex.def)             Requested size: 525.23788pt x 255.0285pt.
+<buy.png, id=202, 1321.18594pt x 685.8122pt>
+File: buy.png Graphic file (type png)
+<use buy.png>
+Package pdftex.def Info: buy.png  used on input line 210.
+(pdftex.def)             Requested size: 525.23788pt x 272.65614pt.
+ [5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.213 
+       <./homePage.png>]
+<sell.png, id=209, 1304.62407pt x 663.22781pt>
+File: sell.png Graphic file (type png)
+<use sell.png>
+Package pdftex.def Info: sell.png  used on input line 216.
+(pdftex.def)             Requested size: 525.23788pt x 267.01695pt.
+<market.png, id=210, 1247.41031pt x 686.565pt>
+File: market.png Graphic file (type png)
+<use market.png>
+Package pdftex.def Info: market.png  used on input line 222.
+(pdftex.def)             Requested size: 525.23788pt x 289.08865pt.
+ [6
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.225 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.225 
+       <./buy.png> <./sell.png>]
+<transactions.png, id=220, 1296.34312pt x 679.78969pt>
+File: transactions.png Graphic file (type png)
+<use transactions.png>
+Package pdftex.def Info: transactions.png  used on input line 228.
+(pdftex.def)             Requested size: 525.23788pt x 275.42741pt.
+ [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 ...{Backend Dependencies (Java Spring Boot)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 ...{Backend Dependencies (Java Spring Boot)}
+                                                   <./market.png> <./transactions.png>] [8] (documentation.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
 Package rerunfilecheck Info: File `documentation.out' has not changed.
-(rerunfilecheck)             Checksum: 3A97DD3D976D8E5E0699B4F27724DDF1;3650.
+(rerunfilecheck)             Checksum: 6CFDA16450997B77580814410868138D;3933.
  ) 
 Here is how much of TeX's memory you used:
- 12341 strings out of 474423
- 188311 string characters out of 5742663
+ 12456 strings out of 474423
+ 190137 string characters out of 5742663
  2063496 words of memory out of 5000000
- 34469 multiletter control sequences out of 15000+600000
+ 34571 multiletter control sequences out of 15000+600000
  576467 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,326b,2047s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Agi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Agi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/Agi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Agi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Agi/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on documentation.pdf (7 pages, 101467 bytes).
+Output written on documentation.pdf (9 pages, 9180678 bytes).
 PDF statistics:
- 238 PDF objects out of 1000 (max. 8388607)
- 61 named destinations out of 1000 (max. 500000)
- 217 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 70 named destinations out of 1000 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 

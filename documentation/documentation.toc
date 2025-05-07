@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}Overview}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Project Description}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Functionality}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Technical Stack}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Documentation Structure}{2}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Domain Model}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Key Concepts}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Challenges}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Approach}{3}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Architecture}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Overall Design}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Database Schema}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Implementation}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Backend - DAO Classes}{3}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}UserDAO}{3}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}TransactionDAO}{4}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}CryptoCoinDAO}{4}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Backend Services}{4}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}TradingService}{4}{subsubsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.3}Frontend Integration}{4}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Dependencies}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Backend Dependencies (Java Spring Boot)}{5}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Frontend Dependencies (React)}{5}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}External Services}{5}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Summary}{5}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Future Improvements}{6}{subsection.6.2}%

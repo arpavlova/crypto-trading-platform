@@ -2,7 +2,7 @@ USE CRYPTOWORLD;
 
 INSERT INTO Users (Username, Balance)
 VALUES
-  ('alice', 5000.00),
+  ('alice', 10000.00),
   ('bob', 12000.50),
   ('charlie', 300.00),
   ('diana', 7550.75);
